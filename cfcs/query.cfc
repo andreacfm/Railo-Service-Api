@@ -1,161 +1,216 @@
-<cfcomponent extends="com.adobe.CFML.base" displayname="CFML Query Service">
-	<cffunction name="processPosParams" output="false" access="private" returntype="struct" hint="Processes positional sql params">
-		<cfargument name="sqlArray" type="array" required="false" hint="Processes positional sql params">
-		<cfargument name="sqlParams" type="array" required="false" hint="Processes positional sql params">
-		<cfargument name="posparamsarray" type="array" required="false" hint="Processes positional sql params">
-		<cfargument name="queryparams" type="array" required="false" hint="Processes positional sql params">
-		<cfthrow message="the function [com.adobe.CFML.query.processPosParams(array sqlArray, array sqlParams, array posparamsarray, array queryparams)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETUSERNAME" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.query.GETUSERNAME()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETCACHEDAFTER" returntype="void">
-		<cfargument name="cachedafter" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETCACHEDAFTER(string cachedafter)] is not implemented yet">
-	</cffunction>
-	<cffunction name="getPreserveSingleQuotes" output="false" access="private" returntype="string" hint="preservesinglequotes() can't handle expressions, so something like #preservesinglequotes(SQlArray[1])# would'nt work, hence the need for this wrapper">
-		<cfargument name="sqlstatement" type="string" required="false" hint="preservesinglequotes() can't handle expressions, so something like #preservesinglequotes(SQlArray[1])# would'nt work, hence the need for this wrapper">
-		<cfthrow message="the function [com.adobe.CFML.query.getPreserveSingleQuotes(string sqlstatement)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETCACHEDWITHIN" returntype="void">
-		<cfargument name="cachedwithin" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETCACHEDWITHIN(string cachedwithin)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETBLOCKFACTOR" returntype="numeric">
-		<cfthrow message="the function [com.adobe.CFML.query.GETBLOCKFACTOR()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETNAME" returntype="void">
-		<cfargument name="name" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETNAME(string name)] is not implemented yet">
-	</cffunction>
-	<cffunction name="checkIfNamedParamExists" output="false" access="private" returntype="boolean" hint="Checks if a named sql param exists in namedparams array.">
-		<cfargument name="namedSqlparams" type="array" required="false" hint="Checks if a named sql param exists in namedparams array.">
-		<cfargument name="namedparam" type="string" required="false" hint="Checks if a named sql param exists in namedparams array.">
-		<cfthrow message="the function [com.adobe.CFML.query.checkIfNamedParamExists(array namedSqlparams, string namedparam)] is not implemented yet">
-	</cffunction>
-	<cffunction name="arrayinsert" output="false" access="private" returntype="array" hint="Merge one array into another at a specified position and returns the merged array">
-		<cfargument name="sqlArray1" type="array" required="false" hint="Merge one array into another at a specified position and returns the merged array">
-		<cfargument name="sqlArray2" type="array" required="false" hint="Merge one array into another at a specified position and returns the merged array">
-		<cfargument name="pos" type="numeric" required="false" hint="Merge one array into another at a specified position and returns the merged array">
-		<cfthrow message="the function [com.adobe.CFML.query.arrayinsert(array sqlArray1, array sqlArray2, numeric pos)] is not implemented yet">
-	</cffunction>
-	<cffunction name="getPositionalSqlParams" output="false" access="private" returntype="array" hint="parse queryparams stored in parameters array to filter out all postional sql params.">
-		<cfargument name="queryparams" type="array" required="false" hint="parse queryparams stored in parameters array to filter out all postional sql params.">
-		<cfthrow message="the function [com.adobe.CFML.query.getPositionalSqlParams(array queryparams)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETSQL" returntype="void">
-		<cfargument name="sql" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETSQL(string sql)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETDEBUG" returntype="void">
-		<cfargument name="debug" type="boolean" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETDEBUG(boolean debug)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETDATASOURCE" returntype="void">
-		<cfargument name="dataSource" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETDATASOURCE(string dataSource)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETBLOCKFACTOR" returntype="void">
-		<cfargument name="blockfactor" type="numeric" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETBLOCKFACTOR(numeric blockfactor)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETTIMEOUT" returntype="void">
-		<cfargument name="timeout" type="numeric" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETTIMEOUT(numeric timeout)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETCACHEDWITHIN" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.query.GETCACHEDWITHIN()] is not implemented yet">
-	</cffunction>
-	<cffunction name="execute" output="false" access="public" returntype="result" hint="Invoke the cfquery (and cfqueryparam) service tag to execute a query in cfscript. Returns the query resultset">
-		<cfthrow message="the function [com.adobe.CFML.query.execute()] is not implemented yet">
-	</cffunction>
-	<cffunction name="parseSQL" output="false" access="private" returntype="any" hint="Parse the SQL into named and positional params.  For named params, order of params is not important but for postional params we need to match the order in which the params are listed.  Named SQL parameters are specified using ":" (for example, select  * from art where artid = :artistid) Positional SQL parameters are specified using  "?" (for example, select  * from art where artid = ? and artistid = ?)  A combination of named and positional sql params is also possible (although not encouraged) (for example, select  * from art where artid = :artid and artistid = ?)  If named/positional param delimiters (i.e. ":" and "?") appear inside single quotes, we replace them with markes "_colon_" and "_qmark" respectively to help with the parsing. After we are done with the parsing and before we pass the sql to execute() for execution, we replace the markers back with the delimiters  This function parses the sql into sqlArray[] and sqlParams[]">
-		<cfargument name="sql" type="string" required="false" hint="Parse the SQL into named and positional params.  For named params, order of params is not important but for postional params we need to match the order in which the params are listed.  Named SQL parameters are specified using ":" (for example, select  * from art where artid = :artistid) Positional SQL parameters are specified using  "?" (for example, select  * from art where artid = ? and artistid = ?)  A combination of named and positional sql params is also possible (although not encouraged) (for example, select  * from art where artid = :artid and artistid = ?)  If named/positional param delimiters (i.e. ":" and "?") appear inside single quotes, we replace them with markes "_colon_" and "_qmark" respectively to help with the parsing. After we are done with the parsing and before we pass the sql to execute() for execution, we replace the markers back with the delimiters  This function parses the sql into sqlArray[] and sqlParams[]">
-		<cfargument name="queryparams" type="array" required="false" hint="Parse the SQL into named and positional params.  For named params, order of params is not important but for postional params we need to match the order in which the params are listed.  Named SQL parameters are specified using ":" (for example, select  * from art where artid = :artistid) Positional SQL parameters are specified using  "?" (for example, select  * from art where artid = ? and artistid = ?)  A combination of named and positional sql params is also possible (although not encouraged) (for example, select  * from art where artid = :artid and artistid = ?)  If named/positional param delimiters (i.e. ":" and "?") appear inside single quotes, we replace them with markes "_colon_" and "_qmark" respectively to help with the parsing. After we are done with the parsing and before we pass the sql to execute() for execution, we replace the markers back with the delimiters  This function parses the sql into sqlArray[] and sqlParams[]">
-		<cfargument name="sqlCommand" type="string" required="false" hint="Parse the SQL into named and positional params.  For named params, order of params is not important but for postional params we need to match the order in which the params are listed.  Named SQL parameters are specified using ":" (for example, select  * from art where artid = :artistid) Positional SQL parameters are specified using  "?" (for example, select  * from art where artid = ? and artistid = ?)  A combination of named and positional sql params is also possible (although not encouraged) (for example, select  * from art where artid = :artid and artistid = ?)  If named/positional param delimiters (i.e. ":" and "?") appear inside single quotes, we replace them with markes "_colon_" and "_qmark" respectively to help with the parsing. After we are done with the parsing and before we pass the sql to execute() for execution, we replace the markers back with the delimiters  This function parses the sql into sqlArray[] and sqlParams[]">
-		<cfthrow message="the function [com.adobe.CFML.query.parseSQL(string sql, array queryparams, string sqlCommand)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETPASSWORD" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.query.GETPASSWORD()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETDBTYPE" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.query.GETDBTYPE()] is not implemented yet">
-	</cffunction>
-	<cffunction name="processNamedParams" output="false" access="private" returntype="struct" hint="Processes named sql params. Invokes insertNamedParams() to insert the named param into sqlparams array.">
-		<cfargument name="sqlArray" type="array" required="false" hint="Processes named sql params. Invokes insertNamedParams() to insert the named param into sqlparams array.">
-		<cfargument name="sqlParams" type="array" required="false" hint="Processes named sql params. Invokes insertNamedParams() to insert the named param into sqlparams array.">
-		<cfargument name="namedparamsarray" type="array" required="false" hint="Processes named sql params. Invokes insertNamedParams() to insert the named param into sqlparams array.">
-		<cfargument name="queryparams" type="array" required="false" hint="Processes named sql params. Invokes insertNamedParams() to insert the named param into sqlparams array.">
-		<cfargument name="sqlCommand" type="string" required="false" hint="Processes named sql params. Invokes insertNamedParams() to insert the named param into sqlparams array.">
-		<cfthrow message="the function [com.adobe.CFML.query.processNamedParams(array sqlArray, array sqlParams, array namedparamsarray, array queryparams, string sqlCommand)] is not implemented yet">
-	</cffunction>
-	<cffunction name="init" output="false" access="public" returntype="com.adobe.CFML.query" hint="Initialization routine. Returns an instance of this component">
-		<cfthrow message="the function [com.adobe.CFML.query.init()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETDBTYPE" returntype="void">
-		<cfargument name="dbtype" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETDBTYPE(string dbtype)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETPASSWORD" returntype="void">
-		<cfargument name="password" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETPASSWORD(string password)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETTIMEOUT" returntype="numeric">
-		<cfthrow message="the function [com.adobe.CFML.query.GETTIMEOUT()] is not implemented yet">
-	</cffunction>
-	<cffunction name="removePosParam" output="false" access="private" returntype="array" hint="Removes first positional param from positional sql params array">
-		<cfargument name="posparamsarray" type="array" required="false" hint="Removes first positional param from positional sql params array">
-		<cfthrow message="the function [com.adobe.CFML.query.removePosParam(array posparamsarray)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETMAXROWS" returntype="numeric">
-		<cfthrow message="the function [com.adobe.CFML.query.GETMAXROWS()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETSQL" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.query.GETSQL()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETMAXROWS" returntype="void">
-		<cfargument name="maxRows" type="numeric" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETMAXROWS(numeric maxRows)] is not implemented yet">
-	</cffunction>
-	<cffunction name="replaceDelimsWithMarkers" output="false" access="private" returntype="string" hint="replace (named/positional) sql delimiters inside single quotes with markers to allow parsing SQL on delimiters replace : and ? in single quotes with _colon_ and _qmark_">
-		<cfargument name="sql" type="string" required="false" hint="replace (named/positional) sql delimiters inside single quotes with markers to allow parsing SQL on delimiters replace : and ? in single quotes with _colon_ and _qmark_">
-		<cfthrow message="the function [com.adobe.CFML.query.replaceDelimsWithMarkers(string sql)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETRESULT" returntype="void">
-		<cfargument name="result" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETRESULT(string result)] is not implemented yet">
-	</cffunction>
-	<cffunction name="replaceMarkersWithDelims" output="false" access="private" returntype="array" hint="Replaces markers (_colon_and _qmark_) inside single quotes with actual delimiters (: and ?)">
-		<cfargument name="sqlArray" type="array" required="false" hint="Replaces markers (_colon_and _qmark_) inside single quotes with actual delimiters (: and ?)">
-		<cfthrow message="the function [com.adobe.CFML.query.replaceMarkersWithDelims(array sqlArray)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETNAME" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.query.GETNAME()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETDEBUG" returntype="boolean">
-		<cfthrow message="the function [com.adobe.CFML.query.GETDEBUG()] is not implemented yet">
-	</cffunction>
-	<cffunction name="insertNamedParams" output="false" access="private" returntype="array" hint="Inserts a named sql param into sqlParams array. If the named param is not found, an exception is thrown">
-		<cfargument name="namedparam" type="string" required="false" hint="Inserts a named sql param into sqlParams array. If the named param is not found, an exception is thrown">
-		<cfargument name="namedparamsarray" type="array" required="false" hint="Inserts a named sql param into sqlParams array. If the named param is not found, an exception is thrown">
-		<cfargument name="sqlParams" type="array" required="false" hint="Inserts a named sql param into sqlParams array. If the named param is not found, an exception is thrown">
-		<cfthrow message="the function [com.adobe.CFML.query.insertNamedParams(string namedparam, array namedparamsarray, array sqlParams)] is not implemented yet">
-	</cffunction>
-	<cffunction name="getNamedSqlParams" output="false" access="private" returntype="array" hint="parse queryparams stored in parameters array to filter out all named sql params.">
-		<cfargument name="queryparams" type="array" required="false" hint="parse queryparams stored in parameters array to filter out all named sql params.">
-		<cfthrow message="the function [com.adobe.CFML.query.getNamedSqlParams(array queryparams)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETCACHEDAFTER" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.query.GETCACHEDAFTER()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETRESULT" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.query.GETRESULT()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETUSERNAME" returntype="void">
-		<cfargument name="username" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.query.SETUSERNAME(string username)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETDATASOURCE" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.query.GETDATASOURCE()] is not implemented yet">
-	</cffunction>
-</cfcomponent>
+<cfcomponent displayname="ColdFusion Query Service" output="false" extends="com.adobe.coldfusion.base" hint="Query Service to execute SQL queries in cfscript" >
+		
+			<cfproperty name="name" type="string">
+			<cfproperty name="blockfactor" type="numeric">
+			<cfproperty name="cachedafter" type="string">
+			<cfproperty name="cachedwithin" type="string">
+			<cfproperty name="dataSource" type="string">
+			<cfproperty name="dbtype" type="string">
+			<cfproperty name="debug" type="boolean">
+			<cfproperty name="maxRows" type="numeric">
+			<cfproperty name="password" type="string">
+			<cfproperty name="result" type="string">
+			<cfproperty name="timeout" type="numeric">
+			<cfproperty name="username" type="string">
+			<cfproperty name="sql" type="string"> 
+			<cffunction name="getBlockfactor" returntype="numeric">
+				<return blockfactor/>
+			</cffunction>
+			
+			<cffunction name="processposparams" returntype="struct">
+				<cfargument name="sqlArray" type="array" required="false"/>
+					<cfargument name="sqlParams" type="array" required="false"/>
+					<cfargument name="posparamsarray" type="array" required="false"/>
+					<cfargument name="queryparams" type="array" required="false"/>
+					<cfthrow message="the function com.adobe.coldfusion.http.processPosParams() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="execute" returntype="result">
+				<cfthrow message="the function com.adobe.coldfusion.http.execute() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="parsesql" returntype="any">
+				<cfargument name="sql" type="string" required="false"/>
+					<cfargument name="queryparams" type="array" required="false"/>
+					<cfargument name="sqlCommand" type="string" required="false"/>
+					<cfthrow message="the function com.adobe.coldfusion.http.parseSQL() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="checkifnamedparamexists" returntype="boolean">
+				<cfargument name="namedSqlparams" type="array" required="false"/>
+					<cfargument name="namedparam" type="string" required="false"/>
+					<cfthrow message="the function com.adobe.coldfusion.http.checkIfNamedParamExists() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="insertnamedparams" returntype="array">
+				<cfargument name="namedparam" type="string" required="false"/>
+					<cfargument name="namedparamsarray" type="array" required="false"/>
+					<cfargument name="sqlParams" type="array" required="false"/>
+					<cfthrow message="the function com.adobe.coldfusion.http.insertNamedParams() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="getResult" returntype="string">
+				<return result/>
+			</cffunction>
+			
+			<cffunction name="getDbtype" returntype="string">
+				<return dbtype/>
+			</cffunction>
+			
+			<cffunction name="getNamedsqlparams" returntype="array">
+				<cfargument name="queryparams" type="array" required="false"/>
+					<return namedsqlparams/>
+			</cffunction>
+			
+			<cffunction name="getMaxrows" returntype="numeric">
+				<return maxrows/>
+			</cffunction>
+			
+			<cffunction name="getDatasource" returntype="string">
+				<return datasource/>
+			</cffunction>
+			
+			<cffunction name="setDatasource" returntype="void">
+				<cfargument name="dataSource" type="string" required="true"/>
+					<cfset datasource = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getTimeout" returntype="numeric">
+				<return timeout/>
+			</cffunction>
+			
+			<cffunction name="getPositionalsqlparams" returntype="array">
+				<cfargument name="queryparams" type="array" required="false"/>
+					<return positionalsqlparams/>
+			</cffunction>
+			
+			<cffunction name="getCachedwithin" returntype="string">
+				<return cachedwithin/>
+			</cffunction>
+			
+			<cffunction name="getName" returntype="string">
+				<return name/>
+			</cffunction>
+			
+			<cffunction name="setCachedwithin" returntype="void">
+				<cfargument name="cachedwithin" type="string" required="true"/>
+					<cfset cachedwithin = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="replacemarkerswithdelims" returntype="array">
+				<cfargument name="sqlArray" type="array" required="false"/>
+					<cfthrow message="the function com.adobe.coldfusion.http.replaceMarkersWithDelims() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="setDbtype" returntype="void">
+				<cfargument name="dbtype" type="string" required="true"/>
+					<cfset dbtype = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setPassword" returntype="void">
+				<cfargument name="password" type="string" required="true"/>
+					<cfset password = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setName" returntype="void">
+				<cfargument name="name" type="string" required="true"/>
+					<cfset name = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getPreservesinglequotes" returntype="string">
+				<cfargument name="sqlstatement" type="string" required="false"/>
+					<return preservesinglequotes/>
+			</cffunction>
+			
+			<cffunction name="arrayinsert" returntype="array">
+				<cfargument name="sqlArray1" type="array" required="false"/>
+					<cfargument name="sqlArray2" type="array" required="false"/>
+					<cfargument name="pos" type="numeric" required="false"/>
+					<cfthrow message="the function com.adobe.coldfusion.http.arrayinsert() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="setCachedafter" returntype="void">
+				<cfargument name="cachedafter" type="string" required="true"/>
+					<cfset cachedafter = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="processnamedparams" returntype="struct">
+				<cfargument name="sqlArray" type="array" required="false"/>
+					<cfargument name="sqlParams" type="array" required="false"/>
+					<cfargument name="namedparamsarray" type="array" required="false"/>
+					<cfargument name="queryparams" type="array" required="false"/>
+					<cfargument name="sqlCommand" type="string" required="false"/>
+					<cfthrow message="the function com.adobe.coldfusion.http.processNamedParams() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="setMaxrows" returntype="void">
+				<cfargument name="maxRows" type="numeric" required="true"/>
+					<cfset maxrows = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getPassword" returntype="string">
+				<return password/>
+			</cffunction>
+			
+			<cffunction name="init" returntype="com.adobe.coldfusion.query">
+				<cfthrow message="the function com.adobe.coldfusion.http.init() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="setUsername" returntype="void">
+				<cfargument name="username" type="string" required="true"/>
+					<cfset username = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="replacedelimswithmarkers" returntype="string">
+				<cfargument name="sql" type="string" required="false"/>
+					<cfthrow message="the function com.adobe.coldfusion.http.replaceDelimsWithMarkers() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="setDebug" returntype="void">
+				<cfargument name="debug" type="boolean" required="true"/>
+					<cfset debug = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getSql" returntype="string">
+				<return sql/>
+			</cffunction>
+			
+			<cffunction name="setSql" returntype="void">
+				<cfargument name="sql" type="string" required="true"/>
+					<cfset sql = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setTimeout" returntype="void">
+				<cfargument name="timeout" type="numeric" required="true"/>
+					<cfset timeout = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getCachedafter" returntype="string">
+				<return cachedafter/>
+			</cffunction>
+			
+			<cffunction name="getDebug" returntype="boolean">
+				<return debug/>
+			</cffunction>
+			
+			<cffunction name="getUsername" returntype="string">
+				<return username/>
+			</cffunction>
+			
+			<cffunction name="setResult" returntype="void">
+				<cfargument name="result" type="string" required="true"/>
+					<cfset result = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="removeposparam" returntype="array">
+				<cfargument name="posparamsarray" type="array" required="false"/>
+					<cfthrow message="the function com.adobe.coldfusion.http.removePosParam() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="setBlockfactor" returntype="void">
+				<cfargument name="blockfactor" type="numeric" required="true"/>
+					<cfset blockfactor = arguments.varname />
+			</cffunction>
+			
+	
+	</cfcomponent>

@@ -1,220 +1,314 @@
-<cfcomponent extends="com.adobe.CFML.base" displayname="CFML Mail service">
-	<cffunction name="GETPASSWORD" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETPASSWORD()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETSERVER" returntype="void">
-		<cfargument name="server" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETSERVER(string server)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETTYPE" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETTYPE()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETUSESSL" returntype="void">
-		<cfargument name="useSSL" type="boolean" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETUSESSL(boolean useSSL)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETPORT" returntype="void">
-		<cfargument name="port" type="numeric" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETPORT(numeric port)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETSERVER" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETSERVER()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETMAILERID" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETMAILERID()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETBODY" returntype="void">
-		<cfargument name="body" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETBODY(string body)] is not implemented yet">
-	</cffunction>
-	<cffunction name="clear" output="false" access="public" returntype="void" hint="Clear service tag attributes and also any child tags, if applicable In case of service tag attributes, they are removed from the CFC variables scope In case of service tag child tags (like mailpart/mailparam), the arrays used to store the child tags are reset">
-		<cfthrow message="the function [com.adobe.CFML.mail.clear()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETMIMEATTACH" returntype="void">
-		<cfargument name="mimeattach" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETMIMEATTACH(string mimeattach)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETPORT" returntype="numeric">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETPORT()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETUSERNAME" returntype="void">
-		<cfargument name="username" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETUSERNAME(string username)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETPRIORITY" returntype="numeric">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETPRIORITY()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETTIMEOUT" returntype="numeric">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETTIMEOUT()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETTO" returntype="void">
-		<cfargument name="to" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETTO(string to)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETCHARSET" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETCHARSET()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETREMOVE" returntype="void">
-		<cfargument name="remove" type="boolean" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETREMOVE(boolean remove)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETMAXROWS" returntype="numeric">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETMAXROWS()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETMAILERID" returntype="void">
-		<cfargument name="mailerid" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETMAILERID(string mailerid)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETFROM" returntype="void">
-		<cfargument name="from" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETFROM(string from)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETSTARTROW" returntype="void">
-		<cfargument name="startrow" type="numeric" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETSTARTROW(numeric startrow)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETBCC" returntype="void">
-		<cfargument name="bcc" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETBCC(string bcc)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETDEBUG" returntype="void">
-		<cfargument name="debug" type="boolean" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETDEBUG(boolean debug)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETSPOOLENABLE" returntype="void">
-		<cfargument name="spoolenable" type="boolean" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETSPOOLENABLE(boolean spoolenable)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETBODY" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETBODY()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETUSERNAME" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETUSERNAME()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETFAILTO" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETFAILTO()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETPRIORITY" returntype="void">
-		<cfargument name="priority" type="numeric" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETPRIORITY(numeric priority)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETREPLYTO" returntype="void">
-		<cfargument name="replyto" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETREPLYTO(string replyto)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETTIMEOUT" returntype="void">
-		<cfargument name="timeout" type="numeric" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETTIMEOUT(numeric timeout)] is not implemented yet">
-	</cffunction>
-	<cffunction name="send" output="true" access="public" returntype="void" hint="Invoke the cfmail service tag to send mail in cfscript Usage :: new mail().send(from="x@adobe.com", to="y@adobe.com",subject="test",body="test");">
-		<cfthrow message="the function [com.adobe.CFML.mail.send()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETWRAPTEXT" returntype="void">
-		<cfargument name="wraptext" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETWRAPTEXT(string wraptext)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETCC" returntype="void">
-		<cfargument name="cc" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETCC(string cc)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETSUBJECT" returntype="void">
-		<cfargument name="subject" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETSUBJECT(string subject)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETQUERY" returntype="query">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETQUERY()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETGROUP" returntype="void">
-		<cfargument name="group" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETGROUP(string group)] is not implemented yet">
-	</cffunction>
-	<cffunction name="addPart" output="false" access="public" returntype="void" hint="Add cfmailpart child tags">
-		<cfthrow message="the function [com.adobe.CFML.mail.addPart()] is not implemented yet">
-	</cffunction>
-	<cffunction name="init" output="false" access="public" returntype="mail" hint="Initialization routine. Returns an instance of this component">
-		<cfthrow message="the function [com.adobe.CFML.mail.init()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETSUBJECT" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETSUBJECT()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETGROUPCASESENSITIVE" returntype="void">
-		<cfargument name="groupcasesensitive" type="boolean" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETGROUPCASESENSITIVE(boolean groupcasesensitive)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETTO" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETTO()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETGROUPCASESENSITIVE" returntype="boolean">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETGROUPCASESENSITIVE()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETSPOOLENABLE" returntype="boolean">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETSPOOLENABLE()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETREPLYTO" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETREPLYTO()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETPASSWORD" returntype="void">
-		<cfargument name="password" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETPASSWORD(string password)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETUSESSL" returntype="boolean">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETUSESSL()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETWRAPTEXT" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETWRAPTEXT()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETDEBUG" returntype="boolean">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETDEBUG()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETSTARTROW" returntype="numeric">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETSTARTROW()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETCHARSET" returntype="void">
-		<cfargument name="charset" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETCHARSET(string charset)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETUSETLS" returntype="void">
-		<cfargument name="useTLS" type="boolean" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETUSETLS(boolean useTLS)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETFAILTO" returntype="void">
-		<cfargument name="failto" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETFAILTO(string failto)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETMAXROWS" returntype="void">
-		<cfargument name="maxrows" type="numeric" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETMAXROWS(numeric maxrows)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETQUERY" returntype="void">
-		<cfargument name="query" type="query" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETQUERY(query query)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETTYPE" returntype="void">
-		<cfargument name="type" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.mail.SETTYPE(string type)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETREMOVE" returntype="boolean">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETREMOVE()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETFROM" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETFROM()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETCC" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETCC()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETUSETLS" returntype="boolean">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETUSETLS()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETBCC" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETBCC()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETMIMEATTACH" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETMIMEATTACH()] is not implemented yet">
-	</cffunction>
-	<cffunction name="clearParts" output="false" access="public" returntype="void" hint="Clear cfmailpart child tags">
-		<cfthrow message="the function [com.adobe.CFML.mail.clearParts()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETGROUP" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.mail.GETGROUP()] is not implemented yet">
-	</cffunction>
-</cfcomponent>
+<cfcomponent displayname="ColdFusion Mail service" output="false" extends="com.adobe.coldfusion.base" hint="Mail service to send mail in cfscript" >
+		
+			<cfproperty name="from" type="string">
+			<cfproperty name="to" type="string">
+			<cfproperty name="subject" type="string">
+			<cfproperty name="bcc" type="string">
+			<cfproperty name="cc" type="string">
+			<cfproperty name="charset" type="string">
+			<cfproperty name="debug" type="boolean">
+			<cfproperty name="failto" type="string">
+			<cfproperty name="group" type="string">
+			<cfproperty name="groupcasesensitive" type="boolean">
+			<cfproperty name="mailerid" type="string">
+			<cfproperty name="maxrows" type="numeric">
+			<cfproperty name="mimeattach" type="string">
+			<cfproperty name="password" type="string">
+			<cfproperty name="port" type="numeric">
+			<cfproperty name="priority" type="numeric">
+			<cfproperty name="query" type="query">
+			<cfproperty name="replyto" type="string">
+			<cfproperty name="server" type="string">
+			<cfproperty name="spoolenable" type="boolean">
+			<cfproperty name="startrow" type="numeric">
+			<cfproperty name="timeout" type="numeric">
+			<cfproperty name="type" type="string">
+			<cfproperty name="username" type="string">
+			<cfproperty name="useSSL" type="boolean">
+			<cfproperty name="useTLS" type="boolean">
+			<cfproperty name="wraptext" type="string">
+			<cfproperty name="remove" type="boolean">
+			<cfproperty name="body" type="string"> 
+			<cffunction name="getFailto" returntype="string">
+				<return failto/>
+			</cffunction>
+			
+			<cffunction name="setTo" returntype="void">
+				<cfargument name="to" type="string" required="true"/>
+					<cfset to = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getTimeout" returntype="numeric">
+				<return timeout/>
+			</cffunction>
+			
+			<cffunction name="getMaxrows" returntype="numeric">
+				<return maxrows/>
+			</cffunction>
+			
+			<cffunction name="setPassword" returntype="void">
+				<cfargument name="password" type="string" required="true"/>
+					<cfset password = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getType" returntype="string">
+				<return type/>
+			</cffunction>
+			
+			<cffunction name="setServer" returntype="void">
+				<cfargument name="server" type="string" required="true"/>
+					<cfset server = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setFrom" returntype="void">
+				<cfargument name="from" type="string" required="true"/>
+					<cfset from = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getBcc" returntype="string">
+				<return bcc/>
+			</cffunction>
+			
+			<cffunction name="getDebug" returntype="boolean">
+				<return debug/>
+			</cffunction>
+			
+			<cffunction name="setRemove" returntype="void">
+				<cfargument name="remove" type="boolean" required="true"/>
+					<cfset remove = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getMailerid" returntype="string">
+				<return mailerid/>
+			</cffunction>
+			
+			<cffunction name="setGroup" returntype="void">
+				<cfargument name="group" type="string" required="true"/>
+					<cfset group = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setStartrow" returntype="void">
+				<cfargument name="startrow" type="numeric" required="true"/>
+					<cfset startrow = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setGroupcasesensitive" returntype="void">
+				<cfargument name="groupcasesensitive" type="boolean" required="true"/>
+					<cfset groupcasesensitive = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setPort" returntype="void">
+				<cfargument name="port" type="numeric" required="true"/>
+					<cfset port = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="send" returntype="void">
+				<cfthrow message="the function com.adobe.coldfusion.http.send() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="getPort" returntype="numeric">
+				<return port/>
+			</cffunction>
+			
+			<cffunction name="getReplyto" returntype="string">
+				<return replyto/>
+			</cffunction>
+			
+			<cffunction name="getCc" returntype="string">
+				<return cc/>
+			</cffunction>
+			
+			<cffunction name="setCharset" returntype="void">
+				<cfargument name="charset" type="string" required="true"/>
+					<cfset charset = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="clearparts" returntype="void">
+				<cfthrow message="the function com.adobe.coldfusion.http.clearParts() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="setUsessl" returntype="void">
+				<cfargument name="useSSL" type="boolean" required="true"/>
+					<cfset usessl = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="addpart" returntype="void">
+				<cfthrow message="the function com.adobe.coldfusion.http.addPart() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="setQuery" returntype="void">
+				<cfargument name="query" type="query" required="true"/>
+					<cfset query = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getGroupcasesensitive" returntype="boolean">
+				<return groupcasesensitive/>
+			</cffunction>
+			
+			<cffunction name="getStartrow" returntype="numeric">
+				<return startrow/>
+			</cffunction>
+			
+			<cffunction name="setWraptext" returntype="void">
+				<cfargument name="wraptext" type="string" required="true"/>
+					<cfset wraptext = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getServer" returntype="string">
+				<return server/>
+			</cffunction>
+			
+			<cffunction name="setPriority" returntype="void">
+				<cfargument name="priority" type="numeric" required="true"/>
+					<cfset priority = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setCc" returntype="void">
+				<cfargument name="cc" type="string" required="true"/>
+					<cfset cc = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setMailerid" returntype="void">
+				<cfargument name="mailerid" type="string" required="true"/>
+					<cfset mailerid = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getUsername" returntype="string">
+				<return username/>
+			</cffunction>
+			
+			<cffunction name="setUsetls" returntype="void">
+				<cfargument name="useTLS" type="boolean" required="true"/>
+					<cfset usetls = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getMimeattach" returntype="string">
+				<return mimeattach/>
+			</cffunction>
+			
+			<cffunction name="setBcc" returntype="void">
+				<cfargument name="bcc" type="string" required="true"/>
+					<cfset bcc = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getTo" returntype="string">
+				<return to/>
+			</cffunction>
+			
+			<cffunction name="setType" returntype="void">
+				<cfargument name="type" type="string" required="true"/>
+					<cfset type = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="clear" returntype="void">
+				<cfthrow message="the function com.adobe.coldfusion.http.clear() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="getSpoolenable" returntype="boolean">
+				<return spoolenable/>
+			</cffunction>
+			
+			<cffunction name="getBody" returntype="string">
+				<return body/>
+			</cffunction>
+			
+			<cffunction name="getGroup" returntype="string">
+				<return group/>
+			</cffunction>
+			
+			<cffunction name="setSpoolenable" returntype="void">
+				<cfargument name="spoolenable" type="boolean" required="true"/>
+					<cfset spoolenable = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getCharset" returntype="string">
+				<return charset/>
+			</cffunction>
+			
+			<cffunction name="setSubject" returntype="void">
+				<cfargument name="subject" type="string" required="true"/>
+					<cfset subject = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setTimeout" returntype="void">
+				<cfargument name="timeout" type="numeric" required="true"/>
+					<cfset timeout = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getPassword" returntype="string">
+				<return password/>
+			</cffunction>
+			
+			<cffunction name="getUsetls" returntype="boolean">
+				<return usetls/>
+			</cffunction>
+			
+			<cffunction name="setReplyto" returntype="void">
+				<cfargument name="replyto" type="string" required="true"/>
+					<cfset replyto = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getWraptext" returntype="string">
+				<return wraptext/>
+			</cffunction>
+			
+			<cffunction name="getQuery" returntype="query">
+				<return query/>
+			</cffunction>
+			
+			<cffunction name="setMimeattach" returntype="void">
+				<cfargument name="mimeattach" type="string" required="true"/>
+					<cfset mimeattach = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setFailto" returntype="void">
+				<cfargument name="failto" type="string" required="true"/>
+					<cfset failto = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getUsessl" returntype="boolean">
+				<return usessl/>
+			</cffunction>
+			
+			<cffunction name="setUsername" returntype="void">
+				<cfargument name="username" type="string" required="true"/>
+					<cfset username = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="init" returntype="mail">
+				<cfthrow message="the function com.adobe.coldfusion.http.init() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="setMaxrows" returntype="void">
+				<cfargument name="maxrows" type="numeric" required="true"/>
+					<cfset maxrows = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getSubject" returntype="string">
+				<return subject/>
+			</cffunction>
+			
+			<cffunction name="getFrom" returntype="string">
+				<return from/>
+			</cffunction>
+			
+			<cffunction name="getPriority" returntype="numeric">
+				<return priority/>
+			</cffunction>
+			
+			<cffunction name="setDebug" returntype="void">
+				<cfargument name="debug" type="boolean" required="true"/>
+					<cfset debug = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setBody" returntype="void">
+				<cfargument name="body" type="string" required="true"/>
+					<cfset body = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getRemove" returntype="boolean">
+				<return remove/>
+			</cffunction>
+			
+	
+	</cfcomponent>

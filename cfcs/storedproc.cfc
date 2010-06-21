@@ -1,87 +1,124 @@
-<cfcomponent extends="com.adobe.CFML.base" displayname="CFML Storedproc service">
-	<cffunction name="GETCACHEDAFTER" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.GETCACHEDAFTER()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETCACHEDWITHIN" returntype="void">
-		<cfargument name="cachedwithin" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.SETCACHEDWITHIN(string cachedwithin)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETBLOCKFACTOR" returntype="void">
-		<cfargument name="blockfactor" type="numeric" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.SETBLOCKFACTOR(numeric blockfactor)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETRETURNCODE" returntype="void">
-		<cfargument name="returncode" type="boolean" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.SETRETURNCODE(boolean returncode)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETRESULT" returntype="void">
-		<cfargument name="result" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.SETRESULT(string result)] is not implemented yet">
-	</cffunction>
-	<cffunction name="clearProcResults" output="false" access="public" returntype="void" hint="Removes procresult child tags(if defined) by resetting the procresults array">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.clearProcResults()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETRETURNCODE" returntype="boolean">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.GETRETURNCODE()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETCACHEDAFTER" returntype="void">
-		<cfargument name="cachedafter" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.SETCACHEDAFTER(string cachedafter)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETDEBUG" returntype="boolean">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.GETDEBUG()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETDATASOURCE" returntype="void">
-		<cfargument name="datasource" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.SETDATASOURCE(string datasource)] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETUSERNAME" returntype="void">
-		<cfargument name="username" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.SETUSERNAME(string username)] is not implemented yet">
-	</cffunction>
-	<cffunction name="addProcResult" output="false" access="public" returntype="void" hint="Add procresult child tags that are stored in the procresults array">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.addProcResult()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETUSERNAME" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.GETUSERNAME()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETPROCEDURE" returntype="void">
-		<cfargument name="procedure" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.SETPROCEDURE(string procedure)] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETRESULT" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.GETRESULT()] is not implemented yet">
-	</cffunction>
-	<cffunction name="clear" output="false" access="public" returntype="void" hint="Clear tag attributes and child tags like procparams and procresults (if applicable)">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.clear()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETDEBUG" returntype="void">
-		<cfargument name="debug" type="boolean" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.SETDEBUG(boolean debug)] is not implemented yet">
-	</cffunction>
-	<cffunction name="init" output="false" access="public" returntype="storedproc" hint="Initialization routine. Returns an instance of this component">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.init()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETDATASOURCE" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.GETDATASOURCE()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETCACHEDWITHIN" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.GETCACHEDWITHIN()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETPASSWORD" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.GETPASSWORD()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETBLOCKFACTOR" returntype="numeric">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.GETBLOCKFACTOR()] is not implemented yet">
-	</cffunction>
-	<cffunction name="SETPASSWORD" returntype="void">
-		<cfargument name="password" type="string" required="YES">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.SETPASSWORD(string password)] is not implemented yet">
-	</cffunction>
-	<cffunction name="execute" output="false" access="public" returntype="storedprocResult" hint="Invoke the cfstoredproc tag (and its child tags cfprocparams and cfprocresult) to provide the storedproc service in cfscript  Usage :: sp = new sp();	//stored proc object r = sp.execute(procedure="proc")  //execute stored procedure and return an instance of com.adobe.CFML.storedprocResult with data (like procresultsets|procvars|result) set r.getProcResultSets() //access any resultsets returned by the stored procedure r.getProcOutVariables() //access any OUT|INOUT variables set by the stored procedure r.getResult() //access result struct (a.k.a cfstoredproc scope) avaialble after a stored procedure call)">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.execute()] is not implemented yet">
-	</cffunction>
-	<cffunction name="GETPROCEDURE" returntype="string">
-		<cfthrow message="the function [com.adobe.CFML.storedproc.GETPROCEDURE()] is not implemented yet">
-	</cffunction>
-</cfcomponent>
+<cfcomponent displayname="ColdFusion Storedproc service" output="false" extends="com.adobe.coldfusion.base" hint="Stored procedure service to call stored procedures in cfscript" >
+		
+			<cfproperty name="datasource" type="string">
+			<cfproperty name="procedure" type="string">
+			<cfproperty name="debug" type="boolean">
+			<cfproperty name="cachedafter" type="string">
+			<cfproperty name="cachedwithin" type="string">
+			<cfproperty name="blockfactor" type="numeric">
+			<cfproperty name="password" type="string">
+			<cfproperty name="result" type="string">
+			<cfproperty name="returncode" type="boolean">
+			<cfproperty name="username" type="string"> 
+			<cffunction name="clearprocresults" returntype="void">
+				<cfthrow message="the function com.adobe.coldfusion.http.clearProcResults() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="clear" returntype="void">
+				<cfthrow message="the function com.adobe.coldfusion.http.clear() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="setDatasource" returntype="void">
+				<cfargument name="datasource" type="string" required="true"/>
+					<cfset datasource = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getCachedwithin" returntype="string">
+				<return cachedwithin/>
+			</cffunction>
+			
+			<cffunction name="init" returntype="storedproc">
+				<cfthrow message="the function com.adobe.coldfusion.http.init() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="getUsername" returntype="string">
+				<return username/>
+			</cffunction>
+			
+			<cffunction name="execute" returntype="storedprocresult">
+				<cfthrow message="the function com.adobe.coldfusion.http.execute() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="getReturncode" returntype="boolean">
+				<return returncode/>
+			</cffunction>
+			
+			<cffunction name="setReturncode" returntype="void">
+				<cfargument name="returncode" type="boolean" required="true"/>
+					<cfset returncode = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setUsername" returntype="void">
+				<cfargument name="username" type="string" required="true"/>
+					<cfset username = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="addprocresult" returntype="void">
+				<cfthrow message="the function com.adobe.coldfusion.http.addProcResult() is not implemented yet">
+			</cffunction>
+			
+			<cffunction name="setCachedwithin" returntype="void">
+				<cfargument name="cachedwithin" type="string" required="true"/>
+					<cfset cachedwithin = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setPassword" returntype="void">
+				<cfargument name="password" type="string" required="true"/>
+					<cfset password = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getResult" returntype="string">
+				<return result/>
+			</cffunction>
+			
+			<cffunction name="getDatasource" returntype="string">
+				<return datasource/>
+			</cffunction>
+			
+			<cffunction name="getCachedafter" returntype="string">
+				<return cachedafter/>
+			</cffunction>
+			
+			<cffunction name="setBlockfactor" returntype="void">
+				<cfargument name="blockfactor" type="numeric" required="true"/>
+					<cfset blockfactor = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setCachedafter" returntype="void">
+				<cfargument name="cachedafter" type="string" required="true"/>
+					<cfset cachedafter = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getPassword" returntype="string">
+				<return password/>
+			</cffunction>
+			
+			<cffunction name="getDebug" returntype="boolean">
+				<return debug/>
+			</cffunction>
+			
+			<cffunction name="getProcedure" returntype="string">
+				<return procedure/>
+			</cffunction>
+			
+			<cffunction name="setDebug" returntype="void">
+				<cfargument name="debug" type="boolean" required="true"/>
+					<cfset debug = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setResult" returntype="void">
+				<cfargument name="result" type="string" required="true"/>
+					<cfset result = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="setProcedure" returntype="void">
+				<cfargument name="procedure" type="string" required="true"/>
+					<cfset procedure = arguments.varname />
+			</cffunction>
+			
+			<cffunction name="getBlockfactor" returntype="numeric">
+				<return blockfactor/>
+			</cffunction>
+			
+	
+	</cfcomponent>
