@@ -2,6 +2,7 @@
 	<cfscript>
 		variables.attributes = {};
 		variables.params = [];
+		variables.parts = [];
 	</cfscript>
 
 	<cffunction name="getAttributes" output="false" access="public" returntype="struct" hint="Returns a struct with all/some of the service tag attribute values. If no attributes are specified, it returns a CFML with all service tag attribute values">
@@ -49,21 +50,51 @@
 		<cfset var resultVar = "">
 		<cfset var result = new Result()>
 		<cfset var tagAttributes = getTagAttributes()>
-		<cfif tagName EQ "http">
-			
-			<cfhttp attributeCollection="#getTagAttributes()#" result="resultVar">
+		
+		
+		<cfswitch expression="#tagname#">
+			<cfcase value="http">
+				<cfhttp attributeCollection="#getTagAttributes()#" result="resultVar">
+					<cfloop array="#variables.params#" index="param">
+						<cfhttpParam attributeCollection="#param#">
+					</cfloop>
+				</cfhttp>
+				<cfif structkeyexists(tagAttributes,"name") and tagAttributes["name"] neq "">
+	                  <cfset result.setResult(StructFind(variables,tagAttributes["name"]))>
+				<cfelse>
+					<cfset result.setResult(resultVar)>
+				</cfif>
+				<cfset result.setPrefix(resultVar)>
+				<cfreturn result />
+			</cfcase>
+			<cfcase value="mail">
+				<cfset var body = "">
+				<cfif StructKeyExists(tagAttributes, "body")>
+					<cfset body = tagAttributes.body>
+					<cfset Structdelete(tagAttributes, "body")>
+				</cfif>
+				<cfmail attributeCollection="#tagAttributes#">#body#							
 				<cfloop array="#variables.params#" index="param">
-					<cfhttpParam attributeCollection="#param#">
-				</cfloop>
-			</cfhttp>
-			<cfif structkeyexists(tagAttributes,"name") and tagAttributes["name"] neq "">
-                  <cfset result.setResult(StructFind(variables,tagAttributes["name"]))>
-			<cfelse>
-				<cfset result.setResult(resultVar)>
-			</cfif>
-			<cfset result.setPrefix(resultVar)>
-			<cfreturn result />
-		</cfif>
+                        <cfmailparam attributeCollection="#param#">
+                  </cfloop>
+				
+				<cfloop array="#variables.parts#" index="part">
+					<cfset partbody = "">
+                        <cfif structkeyexists(part,"body")>
+                             <cfset partbody = part["body"]>
+                             <cfset structdelete(part,"body")>
+                        </cfif>
+                        <cfmailpart attributeCollection="#part#">
+                            #partbody#
+                        </cfmailpart>
+                    </cfloop>
+				</cfmail>
+			
+				<cfreturn this/>
+			</cfcase>
+		
+		
+		</cfswitch>
 		
 		
 		<cfthrow message="the function [com.adobe.CFML.base.invokeTag(string tagName, struct tagAttributes, struct tagParams)] is not implemented yet for #tagName#">
@@ -109,12 +140,72 @@
 		}
 		return this;
 	}
+	
+	public array function getParams(){
+		return variables.params;
+	}
+	
+	public any function clearParams(){
+		variables.params = [];
+		return this;
+	}
+	
+	public any function addPart(){
+		if(!StructIsEmpty(arguments)){
+			ArrayAppend(variables.parts, arguments);
+		}
+		return this;
+	}
+	
+	public array function getParts(){
+		return variables.parts;
+	}
+
+	public any function setParts(array parts){
+		variables.parts = parts;
+		return this;
+	}
+	public any function clearParts(){
+		variables.parts = [];
+	}
+	
+	public struct function getAttributes(){
+		return variables.attributes;
+	}	
+	
+	public any function setAttributes(array attributes){
+		variables.attributes = attributes;
+		return this;
+	}
+	
+	public any function clearAttributes(){
+		variables.attributes = {};
+		return this;
+	}
+	
+	public any function clear()
+	{
+		clearAttributes();
+		clearParams();
+		clearParts();
+		return this;
+	}
 		
 	public any function onMissingMethod(methodName, methodArguments){
 		var attrName = Right(methodname, Len(methodname)-3);
 		var methodType = Left(methodname, 3);
+		
+		var lAllowedExtra = "";
+		switch(variables.tagName){
+			case "mail":
+				lAllowedExtra = "body";
+			break;
+		
+		}
+		
 
-		if(methodType EQ "get" && StructKeyExists(getSupportedTagAttributes(), attrName)){
+
+		if(methodType EQ "get" && (StructKeyExists(getSupportedTagAttributes(), attrName) || ListFind(lAllowedExtra, attrName))){
 			if(StructKeyExists(variables.attributes, attrName)){
 				return variables.attributes[attrName];
 			}
@@ -122,10 +213,16 @@
 				return "";
 			}
 		}
-		if(methodType EQ "set" && StructKeyExists(getSupportedTagAttributes(), attrName)){
-			variables.attributes[attrName] = methodArguments;
+
+		
+		if(methodType EQ "set" && (StructKeyExists(getSupportedTagAttributes(), attrName) || ListFindNoCase(lAllowedExtra, attrName))){
+			variables.attributes[attrName] = methodArguments[1];
 			return this;
 		}
+
+		
+		//Add also allowed "special" attributes for certain tags
+		
 		throw("There is no method with the name #methodName#", "expression");
 	}
 	
