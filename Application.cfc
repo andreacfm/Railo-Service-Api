@@ -1,8 +1,5 @@
 <cfcomponent output="false">
-	<cfscript>
-	
+	<cfscript>	
 		this.name = "RailoServices";
-		this.mappings["CF"] = expandPath("cfcs/railo/services");
-	
 	</cfscript>
 </cfcomponent>

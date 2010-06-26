@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>railo_saas</name>
+	<name>RailoServiceApi</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,11 +14,6 @@
 			<name>acf_services</name>
 			<type>2</type>
 			<location>/Applications/ColdFusion9/CustomTags</location>
-		</link>
-		<link>
-			<name>railo_services</name>
-			<type>2</type>
-			<location>/Applications/ColdFusion9/wwwroot/tests</location>
 		</link>
 	</linkedResources>
 </projectDescription>
