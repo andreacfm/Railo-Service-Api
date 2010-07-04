@@ -3,11 +3,14 @@
 	<cfproperty name="name" type="string">
 	
 	<cfscript>		
-	variables.tagname = "cfquery";
+	variables.tagname = "query";
 	</cfscript>
 
-	<cffunction name="init" access="public" output="false" returntype="Base">		
-		<cfset super.init(argumentCollection=arguments)>
+	<cffunction name="init" access="public" output="false" returntype="Base">	
+		<cfdump var="#arguments#">
+		<cfabort>
+	
+		<cfset super.init(arguments)>
 		<cfreturn this/>
 	</cffunction>
 	

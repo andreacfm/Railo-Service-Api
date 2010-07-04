@@ -17,9 +17,8 @@
 	
 	<cffunction name="simple_execute_return_recordset" returntype="void">
 		<cfscript>
-		var q = new CF.Query(dsn = variables.dsn, sql = "select * from railoteam");
-		var result = q.execute();
-		
+		var q = new CF.Query(datasource = variables.dsn, sql = "select * from railoteam");
+		var result = q.execute();	
 		assertTrue(isvalid("Query",result.getResult()));	
 		</cfscript>
 	</cffunction>

@@ -24,6 +24,9 @@
 	 --->
 	<cffunction name="init" returntype="Base" access="public" output="false">
 		<cfargument name="attributes" type="Struct" default="#{}#">	
+		<cfdump var="#arguments#">
+		<cfabort>
+
 		<cfscript>
 		if(structCount(arguments.attributes)){
 			StructAppend(variables.attributes, arguments, true);
@@ -115,7 +118,7 @@
 	 --->
 	<cffunction name="getSupportedTagAttributes" returntype="Struct" output="false" access="public">
 		<cfscript>
-		return getTagdData("cf",getTagName());
+		return getTagData("cf",getTagName());
 		</cfscript>
 	</cffunction>	
 	
@@ -128,13 +131,16 @@
 		<cfset var tagParams = getParams()>	
 		<cfset var resultVar = "">
 		<cfset var result = new Result()>
-		<cfset var tagAttributes = getTagAttributes()>
 		<cfset var tagResult = "">
 		
 		<cfswitch expression="#tagname#">
 			
 			<!--- cfquery --->
-			<cfcase value="cfquery">
+			<cfcase value="query">
+				
+				<cfdump var="#tagAttributes#">
+				<cfabort>
+
 				
 				<cfset var q = "">
 				<cfquery name ="q" attributeCollection="#tagAttributes#" result="tagResult">
@@ -204,20 +210,6 @@
 		<cfthrow message="the function [com.adobe.CFML.base.appendAllowExtraAttributes(array params)] is not implemented yet">
 	</cffunction>
 	
-	<!--- 
-	getTagAttributes
-	 --->
-	<cffunction name="getTagAttributes" output="false" access="public" returntype="struct" 
-		hint="Returns a struct with attributes set either using implicit setters | init() | addAttributes()">
-		<cfreturn Duplicate(variables.attributes) />	
-	</cffunction>
-
-	<!--- 
-	result
-	--->
-	<cffunction name="getResult" access="public" returntype="any">
-		<cfreturn variables.result.getResult()/>
-	</cffunction>
 	
 	<!--- 
 	onMissingMethod
@@ -230,19 +222,24 @@
 		<cfscript>
 			var attrName = Right(methodname, Len(methodname)-3);
 			var methodType = Left(methodname, 3);
+			var tagname = getTagName();
+			var supportedTagAttributes = getSupportedTagAttributes();
+			var tagAttributes = getAttributes();
 			
 			var lAllowedExtra = "";
 			
-			switch(variables.tagName){
+			switch(tagName){
 				case "mail":
 					lAllowedExtra = "body";
+				case "query":
+					lAllowedExtra = "sql";	
 				break;
 			
 			}
-	
-			if(methodType EQ "get" && (StructKeyExists(getSupportedTagAttributes(), attrName) || ListFind(lAllowedExtra, attrName))){
-				if(StructKeyExists(variables.attributes, attrName)){
-					return variables.attributes[attrName];
+			
+			if(methodType EQ "get" && (StructKeyExists(supportedTagAttributes, attrName) || ListFindNoCase(lAllowedExtra, attrName))){
+				if(StructKeyExists(tagAttributes, attrName)){
+					return tagAttributes[attrName];
 				}
 				else{
 					return "";
