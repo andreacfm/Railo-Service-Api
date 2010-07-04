@@ -23,7 +23,7 @@
 	init
 	 --->
 	<cffunction name="init" returntype="Base" access="public" output="false">
-		<cfargument name="attributes" type="Struct" default="{}">	
+		<cfargument name="attributes" type="Struct" default="#{}#">	
 		<cfscript>
 		if(structCount(arguments.attributes)){
 			StructAppend(variables.attributes, arguments, true);
@@ -88,7 +88,6 @@
 		</cfscript>
 	</cffunction>
 
-
 	<!--- 
 	clearAttributes
 	 --->
@@ -124,22 +123,34 @@
 	invoke Tag 
 	--->
 	<cffunction name="invokeTag" output="true" access="private" returntype="any" hint="invokes the service tag">
-
-		<cfargument name="tagName" type="string">
-		<cfargument name="tagAttributes" type="struct">
-		<cfargument name="tagParams" type="struct" required="no">
-			
+		<cfset var tagname = getTagName()>
+		<cfset var tagAttributes = getAttributes()>
+		<cfset var tagParams = getParams()>	
 		<cfset var resultVar = "">
 		<cfset var result = new Result()>
 		<cfset var tagAttributes = getTagAttributes()>
-		
+		<cfset var tagResult = "">
 		
 		<cfswitch expression="#tagname#">
 			
+			<!--- cfquery --->
+			<cfcase value="cfquery">
+				
+				<cfset var q = "">
+				<cfquery name ="q" attributeCollection="#tagAttributes#" result="tagResult">
+					#this.getSql()#
+				</cfquery>
+				
+				<cfset result.setResult(q)>			
+				<cfset result.setPrefix(tagResult)>
+				
+				<cfreturn result>
+			</cfcase>
+			
 			<!--- cfhttp --->
 			<cfcase value="http">
-				<cfhttp attributeCollection="#getTagAttributes()#" result="resultVar">
-					<cfloop array="#variables.params#" index="param">
+				<cfhttp attributeCollection="#tagAttributes#" result="resultVar">
+					<cfloop array="#tagParams#" index="param">
 						<cfhttpParam attributeCollection="#param#">
 					</cfloop>
 				</cfhttp>
@@ -149,7 +160,6 @@
 					<cfset result.setResult(resultVar)>
 				</cfif>
 				<cfset result.setPrefix(resultVar)>
-				<cfreturn result />
 			</cfcase>
 			
 			<!--- cfmail --->
@@ -160,7 +170,7 @@
 					<cfset Structdelete(tagAttributes, "body")>
 				</cfif>
 				<cfmail attributeCollection="#tagAttributes#">#body#							
-				<cfloop array="#variables.params#" index="param">
+				<cfloop array="#tagParams#" index="param">
                         <cfmailparam attributeCollection="#param#">
                   </cfloop>
 				
@@ -182,8 +192,8 @@
 		
 		</cfswitch>
 		
-		<cfthrow message="the function [com.adobe.CFML.base.invokeTag(string tagName, struct tagAttributes, struct tagParams)] is not implemented yet for #tagName#">
-		
+		<cfreturn result>
+				
 	</cffunction>
 	
 	<!--- 
@@ -201,14 +211,21 @@
 		hint="Returns a struct with attributes set either using implicit setters | init() | addAttributes()">
 		<cfreturn Duplicate(variables.attributes) />	
 	</cffunction>
+
+	<!--- 
+	result
+	--->
+	<cffunction name="getResult" access="public" returntype="any">
+		<cfreturn variables.result.getResult()/>
+	</cffunction>
 	
 	<!--- 
 	onMissingMethod
 	 --->	
 	<cffunction name="onMissingMethod" output="false" access="public" returntype="any"
 				hint="Allow general get() set() method on the attributes struct and on extra values ( like mail body )">
-		<cfargument name="attrName" type="string">
-		<cfargument name="methodArguments" type="string">
+		<cfargument name="methodname" type="string">
+		<cfargument name="methodArguments" type="Array">
 		
 		<cfscript>
 			var attrName = Right(methodname, Len(methodname)-3);
@@ -239,7 +256,6 @@
 			}
 			
 			throw("There is no method with the name #methodName#", "expression");
-		}
 	
 		</cfscript>
 
