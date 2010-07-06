@@ -7,10 +7,7 @@
 	</cfscript>
 
 	<cffunction name="init" access="public" output="false" returntype="Base">	
-		<cfdump var="#arguments#">
-		<cfabort>
-	
-		<cfset super.init(arguments)>
+		<cfset super.init(argumentCollection=arguments)>
 		<cfreturn this/>
 	</cffunction>
 	
@@ -19,6 +16,5 @@
 		<cfreturn result>
 	</cffunction>
 	
-									
-								
+												
 </cfcomponent>

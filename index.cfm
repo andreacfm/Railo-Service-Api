@@ -1,3 +1,3 @@
 <strong>Railo Services</strong>
-<cfset q = new CF.query() >
-<cfdump var="#gettagdata('cf','query')#">
+<cfdbinfo datasource="railoserviceapi" type="tables" name="q" username="admin">
+<cfdump var="#q#">

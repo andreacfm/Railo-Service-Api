@@ -1,26 +1,24 @@
-<cfcomponent extends="mxunit.framework.TestCase">
+component extends="mxunit.framework.TestCase"{
 	
-	<cfset variables.dsn = "railoserviceapi">
+	variables.dsn = "railoserviceapi";
 	
-	<cffunction name="setUp" returntype="void" access="public">
-	</cffunction>
+	public void function setUp(){
+	}
 
-	<cffunction name="tearDown" returntype="void" access="public">
-	</cffunction>
-	
-	<cffunction name="simple_creation_must_return_a_cfc_query_object" returntype="void">
-		<cfscript>
+	public void function tearDown(){
+	}
+
+	public void function simple_creation_must_return_a_cfc_query_object(){
 		var q = new CF.query();
 		assertTrue(isObject(q),"new query does not return an object");	
-		</cfscript>	
-	</cffunction>
 	
-	<cffunction name="simple_execute_return_recordset" returntype="void">
-		<cfscript>
-		var q = new CF.Query(datasource = variables.dsn, sql = "select * from railoteam");
+	}
+	
+	public void function simple_execute_return_recordset(){
+		var q = new CF.Query(datasource = variables.dsn, sql = 'select * from "TEAM"');
 		var result = q.execute();	
 		assertTrue(isvalid("Query",result.getResult()));	
-		</cfscript>
-	</cffunction>
+	
+	}
 
-</cfcomponent>
+}

@@ -1,6 +1,6 @@
 <cfcomponent displayname="base" accessors="true">
 
-	<cfproperty type="String" name="tagName" >
+	<cfproperty type="String" name="tagName">
 	<cfproperty type="Array" name="params" >
 	<cfproperty type="Array" name="parts" >
 	<cfproperty type="Struct" name="attributes" >
@@ -23,13 +23,8 @@
 	init
 	 --->
 	<cffunction name="init" returntype="Base" access="public" output="false">
-		<cfdump var="#arguments#">
-		<cfabort>
-
 		<cfscript>
-		if(structKeyExists(arguments,'attributes') and structCount(arguments.attributes)){
-			StructAppend(variables.attributes, arguments, true);
-		}
+		setAttributes(arguments);
 		return this;		
 		</cfscript>		
 	</cffunction>
@@ -82,6 +77,7 @@
 	addAttributes
 	 --->
 	<cffunction name="addAttributes" returntype="Base" output="false" access="public">
+		<cfargument name="attributes" type="struct" required="true">
 		<cfscript>
 		if(structCount(arguments.attributes)){
 			StructAppend(variables.attributes, arguments, true);
@@ -136,10 +132,6 @@
 			
 			<!--- cfquery --->
 			<cfcase value="query">
-				
-				<cfdump var="#tagAttributes#">
-				<cfabort>
-
 				
 				<cfset var q = "">
 				<cfquery name ="q" attributeCollection="#tagAttributes#" result="tagResult">
