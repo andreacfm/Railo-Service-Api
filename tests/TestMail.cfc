@@ -1,6 +1,9 @@
 component extends="mxunit.framework.TestCase" {
 	
-	function setUp(){deleteEmails();}
+	function setUp(){
+		deleteEmails();
+	}
+	
 	function tearDown(){
 	//deleteEmails();
 	}
