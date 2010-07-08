@@ -14,11 +14,17 @@ component extends="mxunit.framework.TestCase"{
 	
 	}
 	
-	public void function simple_execute_return_recordset(){
-		var q = new CF.Query(datasource = variables.dsn, sql = 'select * from "TEAM"');
+	public void function simple_execute_return_query_recordset(){
+		var sql = 'select * from "TEAM"';
+		var q = new CF.Query(datasource = variables.dsn, sql = sql);
 		var result = q.execute();	
-		assertTrue(isvalid("Query",result.getResult()));	
+		assertTrue(isvalid("Query",result.getResult()));
+		assertTrue(result.getPrefix().sql eq sql,"Error in prefix");	
 	
+	}
+	
+	public void function test_params(){
+
 	}
 
 }

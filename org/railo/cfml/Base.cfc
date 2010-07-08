@@ -133,8 +133,10 @@
 			<!--- cfquery --->
 			<cfcase value="query">
 				
-				<cfset var q = "">
-				<cfquery name ="q" attributeCollection="#tagAttributes#" result="tagResult">
+				<!--- give a default name if no name is provided --->
+				<cfset tagAttributes.name = structKeyExists(tagAttributes,'name') ? tagAttributes.name : 'q'>
+				
+				<cfquery attributeCollection="#tagAttributes#" result="tagResult">
 					#this.getSql()#
 				</cfquery>
 				
