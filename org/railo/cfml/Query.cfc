@@ -1,30 +1,50 @@
-<cfcomponent displayname="Query Service" output="false" extends="Base">
-				
-	<cfproperty name="name" type="string">
+component output="false" extends="Base"{
 	
-	<cfscript>		
+	property name="name" type="String";
+	
+	/*
+	 * Tag Name
+	 */
 	variables.tagname = "query";
-	</cfscript>
+	
+	
+	/*
+	 * @hint Constructor
+	 */	
+	public Base function init(){
+		super.init(argumentCollection=arguments);
+		return this;		
+	}
 
-	<cffunction name="init" access="public" output="false" returntype="Base">	
-		<cfset super.init(argumentCollection=arguments)>
-		<cfreturn this/>
-	</cffunction>
-	
-	<cffunction name="execute" access="public" output="false" returntype="Result">
-		<cfargument name="sql" type="string" required="false">
-		<cfif len(arguments.sql)>
-			<cfset setSql(arguments.sql)>
-		</cfif>
-		<cfset parseSql()>
-		<cfset var result = invokeTag()>
-		<cfreturn result>
-	</cffunction>
-	
-	
-												
-</cfcomponent>
-<!--- 
+	/*
+	 * @hint Execute the query
+	 */	
+	public Result function execute(String sql=""){
+		if(len(arguments.sql)){
+			 setSql(arguments.sql);
+		}
+		//parseSql();
+		return invokeTag();
+	}
+
+	/*
+	 * @hint Parse the sql string converting into an array. 
+	 *       Named and positional params will populate the array too.
+	 */
+	private Array function parseSql(){
+		var result = array();
+		var sql = this.getSql();
+
+		var match = refindNoCase(':.*|\?',sql,1,true);
+		
+		writedump(match);
+				
+		return result;	
+	}
+						
+}
+
+/*
 invoke tag flow:
 
 * params exixts?
@@ -33,4 +53,4 @@ invoke tag flow:
 				   replace with params array
 				   setSql()
 				   invokeTag
- --->
+ */

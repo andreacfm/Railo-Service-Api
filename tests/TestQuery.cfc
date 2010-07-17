@@ -19,12 +19,18 @@ component extends="mxunit.framework.TestCase"{
 		var q = new CF.Query(datasource = variables.dsn, sql = sql);
 		var result = q.execute();	
 		assertTrue(isvalid("Query",result.getResult()));
-		assertTrue(result.getPrefix().sql eq sql,"Error in prefix");	
+		assertTrue(trim(result.getPrefix().sql) == sql,"Error in prefix");	
 	
 	}
 	
-	public void function test_params(){
-
+	public void function test_parse_sql(){
+		var q = new CF.query();
+		makePublic(q,'parseSql');
+		
+		var sql = "Select from table where id = :myid";
+		q.setSql(sql);
+		var result = q.parseSql();
+		
 	}
 
 }
