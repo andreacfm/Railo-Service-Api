@@ -34,10 +34,9 @@
 	addParam
 	 --->
 	<cffunction name="addParam" returntype="Base" output="false" access="public" 
-				hint="Add an array of params to the internal storage">
-		<cfargument name="params" type="Array" default="[]">
+				hint="Add a new param">
 		<cfscript>
-		ArrayAppend(variables.params,arguments.params);
+		ArrayAppend(variables.params,arguments);
 		return this;		
 		</cfscript>
 	</cffunction>

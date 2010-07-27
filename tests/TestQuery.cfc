@@ -23,13 +23,45 @@ component extends="mxunit.framework.TestCase"{
 	
 	}
 	
+	
+	public void function test_getNamedParams(){
+		var q = new CF.query();
+		makePublic(q,'getNamedParams');
+		q.addParam(name="p1",value="1",cfsqltype="cf_sql_varchar");
+		q.addParam(name="p2",value="2",cfsqltype="cf_sql_varchar");
+		q.addParam(value="3",cfsqltype="cf_sql_varchar");		
+		var result = q.getNamedParams();
+		assertTrue(result.size() == 2);
+		assertTrue(result[1].name == 'p1');
+		
+	}
+
+	public void function test_getPositionalParams(){
+		var q = new CF.query();
+		makePublic(q,'getPositionalParams');
+		q.addParam(name="p1",value="1",cfsqltype="cf_sql_varchar");
+		q.addParam(name="p2",value="2",cfsqltype="cf_sql_varchar");
+		q.addParam(value="3",cfsqltype="cf_sql_varchar");		
+		var result = q.getPositionalParams();
+		assertTrue(result.size() == 1);
+		assertTrue(result[1].value == 3);
+		
+	}
+	
 	public void function test_parse_sql(){
 		var q = new CF.query();
 		makePublic(q,'parseSql');
+
+		q.addParam(name="wrong",value="1",cfsqltype="cf_sql_numeric");
+		q.addParam(name="myid",value="1",cfsqltype="cf_sql_numeric");
+		q.addParam(value="hello",cfsqltype="cf_sql_varchar");		
 		
-		var sql = "Select from table where id = :myid";
+		var sql = "Select from table where id = :myid and name = ?";
 		q.setSql(sql);
 		var result = q.parseSql();
+		assertTrue(arrayLen(result) eq 4);
+		assertTrue(trim(result[1].value) eq  'Select from table where id =');
+		assertTrue(trim(result[2].name) eq 'myid');
 		
 	}
 
