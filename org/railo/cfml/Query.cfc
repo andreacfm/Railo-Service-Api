@@ -23,7 +23,7 @@ component output="false" extends="Base"{
 		if(len(arguments.sql)){
 			 setSql(arguments.sql);
 		}
-		//parseSql();
+		parseSql();
 		return invokeTag();
 	}
 
@@ -51,8 +51,7 @@ component output="false" extends="Base"{
 				//add match
 				str = mid(sql,match.pos[1],match.len[1]);
 				if(left(str,1) eq ':'){
-					result.add(findNamedParams(namedParams,right(str,len(str) - 1)));
-					namedCursor ++;
+					result.add(findNamedParam(namedParams,right(str,len(str) - 1)));
 				}else{
 					result.add(positionalParams[positionalCursor]);
 					positionalCursor ++;				
@@ -99,10 +98,19 @@ component output="false" extends="Base"{
 		return result;
 	}
 	
+
+	/*
+	 * @hint Scan the passed array looking for a "name" param match.
+	 */		
+	private Struct function findNamedParam(Array params,String name){
+		for(item in params){
+			if(structKeyExists(item,'name') && name == item.name){
+				return item;
+			}
+		}
 	
-	private Struct function findNamedParams(String name, Array params){
+		throw(type="org.railo.cfml.query.namedParameterNotFoundException", message="The named parameter [#name#] has not been provided");
 		
-	
 	}
 						
 }

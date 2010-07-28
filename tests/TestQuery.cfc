@@ -65,4 +65,38 @@ component extends="mxunit.framework.TestCase"{
 		
 	}
 
+	public void function test_findNamedParam(){
+		var q = new CF.query();
+		makePublic(q,'findNamedParam');
+
+		var params = [
+			{value="value",cfsqltype="cf_sql_varchar"},
+			{name="param1",value="10",cfsqltype="cf_sql_numeric"},
+			{name="param2",value="20",cfsqltype="cf_sql_numeric"}
+		]
+		
+		var res = q.findNamedParam(params,'param1');
+		assertTrue(res.value eq 10);
+		
+		var res = q.findNamedParam(params,'param2');
+		assertTrue(res.value eq 20);
+		
+	}
+
+	public void function test_findNamedParam_not_found_exception() 
+		mxunit:expectedException="org.railo.cfml.query.namedParameterNotFoundException"
+		{
+		var q = new CF.query();
+		makePublic(q,'findNamedParam');
+
+		var params = [
+			{value="value",cfsqltype="cf_sql_varchar"},
+			{name="param1",value="10",cfsqltype="cf_sql_numeric"},
+			{name="param2",value="20",cfsqltype="cf_sql_numeric"}
+		]
+		
+		var res = q.findNamedParam(params,'not_exists');
+		
+	}
+
 }

@@ -8,12 +8,10 @@ component extends="mxunit.framework.TestCase" {
 	//deleteEmails();
 	}
 	
-/*	
 	function testSimpleCreation(){
 		var mailService = new CF.mail();
 		assert(isObject(mailService));
 	}
-*/	
 	
 	function testConstructorSendEmail(){
 	
