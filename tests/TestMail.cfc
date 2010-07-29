@@ -15,7 +15,7 @@ component extends="mxunit.framework.TestCase" {
 	
 	function testConstructorSendEmail(){
 	
-		var param = {from:"mark.drew@gmail.com",to:"mark.drew@gmail.com",subject:"TestEmail1", body:"Hello World"};
+		var param = {from:"mark.drew@gmail.com",to:"mark.drew@gmail.com",subject:"TestEmail1", body:"Hello World", server = "mail.test.com"};
 		var mailService = new CF.mail(argumentCollection=param);
 			mailService.send();
 			
