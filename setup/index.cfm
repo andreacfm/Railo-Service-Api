@@ -9,23 +9,24 @@
 <cfflush>
 
 <cfquery name="q" datasource="#dsn#">
-DROP TABLE IF EXISTS TEAM;
+drop table if exists team;
 	
-CREATE TABLE TEAM(
-	ID INT AUTO_INCREMENT PRIMARY KEY, 
-	FIRSTNAME VARCHAR(255),
-	LASTNAME VARCHAR(255)
+create table team(
+	id int auto_increment primary key, 
+	firstname varchar(255),
+	lastname varchar(255),
+	dom varchar(10)
 );	
 
-INSERT INTO "TEAM"(FIRSTNAME,LASTNAME) VALUES ('Gert','Frantz');
-INSERT INTO "TEAM"(FIRSTNAME,LASTNAME) VALUES ('Micheal','Offner');
-INSERT INTO "TEAM"(FIRSTNAME,LASTNAME) VALUES ('Sean','Corfield');
-INSERT INTO "TEAM"(FIRSTNAME,LASTNAME) VALUES ('Peter','Bell');
-INSERT INTO "TEAM"(FIRSTNAME,LASTNAME) VALUES ('Mark','Drew');
-INSERT INTO "TEAM"(FIRSTNAME,LASTNAME) VALUES ('Todd','Rafferty');
-INSERT INTO "TEAM"(FIRSTNAME,LASTNAME) VALUES ('Jordan','Micheals');
-INSERT INTO "TEAM"(FIRSTNAME,LASTNAME) VALUES ('AJ','Mercier');
-INSERT INTO "TEAM"(FIRSTNAME,LASTNAME) VALUES ('Andrea','Campolonghi');
+insert into team(firstname,lastname,dom) values ('gert','frantz','com');
+insert into team(firstname,lastname,dom) values ('micheal','offner','com');
+insert into team(firstname,lastname,dom) values ('sean','corfield','com');
+insert into team(firstname,lastname,dom) values ('peter','bell','com');
+insert into team(firstname,lastname,dom) values ('mark','drew','com');
+insert into team(firstname,lastname,dom) values ('todd','rafferty','org');
+insert into team(firstname,lastname,dom) values ('jordan','micheals','org');
+insert into team(firstname,lastname,dom) values ('aj','mercier','org');
+insert into team(firstname,lastname,dom) values ('andrea','campolonghi','org');
 </cfquery>
 
 <cfoutput><p>* Done!</p></cfoutput>

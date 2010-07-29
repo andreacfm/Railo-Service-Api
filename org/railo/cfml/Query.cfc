@@ -1,6 +1,7 @@
-component output="false" extends="Base"{
+component output="false" extends="Base" accessors="true"{
 	
 	property name="name" type="String";
+	property name="qArray" type="Array";
 	
 	/*
 	 * Tag Name
@@ -23,7 +24,11 @@ component output="false" extends="Base"{
 		if(len(arguments.sql)){
 			 setSql(arguments.sql);
 		}
-		parseSql();
+		
+		//parse the sql into an array and save it
+		setQArray(parseSql());
+		
+		// invoke the query and return the result
 		return invokeTag();
 	}
 
@@ -40,7 +45,17 @@ component output="false" extends="Base"{
 		var str = "";
 		var cursor = 1;
 		
+		
+		var match = refindNoCase(':[a-z]*|\?',sql,cursor,true);
+		
+		//if no match there is no need to enter in the loop
+		if(match.pos[1] eq 0){
+			result.add({type='String',value=sql});
+			return result;
+		}
+		
 		while(cursor neq 0){
+			
 			match = refindNoCase(':[a-z]*|\?',sql,cursor,true);
 			
 			if(match.pos[1] gt 0){
@@ -60,7 +75,7 @@ component output="false" extends="Base"{
 			// point the cursor after the match
 			cursor = match.pos[1] + match.len[1];	
 		}		
-
+		
 		return result;	
 	}
 	

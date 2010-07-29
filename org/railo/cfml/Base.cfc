@@ -131,12 +131,21 @@
 			
 			<!--- cfquery --->
 			<cfcase value="query">
+								
+				<!--- get the query array to loop --->
+				<cfset var qArray = getQArray()>
+				<!--- declare the query local var --->
+				<cfset var q = "">
 				
-				<!--- give a default name if no name is provided --->
-				<cfset tagAttributes.name = structKeyExists(tagAttributes,'name') ? tagAttributes.name : 'q'>
-				
-				<cfquery attributeCollection="#tagAttributes#" result="tagResult">
-					#this.getSql()#
+				<cfquery name="q" attributeCollection="#tagAttributes#" result="tagResult">
+					<cfloop array="#qArray#" index="item">
+						<!--- item is s string so just output --->
+						<cfif structKeyExists(item,'type') and item.type eq 'string'>
+							#preserveSingleQuotes(item.value)#
+						<cfelse>
+							<cfqueryparam attributecollection="#item#">
+						</cfif>
+					</cfloop>
 				</cfquery>
 				
 				<cfset result.setResult(q)>			
@@ -193,15 +202,6 @@
 		<cfreturn result>
 				
 	</cffunction>
-	
-	<!--- 
-	appendAllowExtraAttributes
-	 --->
-	<cffunction name="appendAllowExtraAttributes" output="false" access="private" returntype="array" hint="Validate against any incorrect attributes passed to the child tags. This is done by passing allowExtraAttributes=false">
-		<cfargument name="params" type="array" required="false" hint="Validate against any incorrect attributes passed to the child tags. This is done by passing allowExtraAttributes=false">
-		<cfthrow message="the function [com.adobe.CFML.base.appendAllowExtraAttributes(array params)] is not implemented yet">
-	</cffunction>
-	
 	
 	<!--- 
 	onMissingMethod
