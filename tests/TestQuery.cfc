@@ -116,6 +116,36 @@ component extends="mxunit.framework.TestCase"{
 		assertTrue(result.lastname eq 'frantz');
 		
 	}
+	
+	public void function test_clear_params(){
+		
+		var q = new CF.query(datasource=variables.dsn);
+		q.addParam(name="domain",value="com",cfsqltype="cf_sql_varchar");
+		q.addParam(value="gert",cfsqltype="cf_sql_varchar");	
+		var sql = "Select * from team where dom = :domain and firstname = ?";
+		q.setSql(sql);
+		
+		var qres = q.execute();		
+		var result = qres.getResult();
+		
+		assertTrue(result.recordcount eq 1);
+		assertTrue(result.lastname eq 'frantz');
+
+		q.clearParams();
+		
+		assertTrue(arrayIsEmpty(q.getParams()));		
+		
+		// change just the params while sql is still the same
+		q.addParam(name="domain",value="org",cfsqltype="cf_sql_varchar");
+		q.addParam(value="todd",cfsqltype="cf_sql_varchar");	
+		
+		qres = q.execute();		
+		result = qres.getResult();
+		
+		assertTrue(result.recordcount eq 1);
+		assertTrue(result.lastname eq 'rafferty');
+		
+	}
 
 
 }
