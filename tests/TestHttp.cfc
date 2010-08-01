@@ -11,23 +11,22 @@ component extends="mxunit.framework.TestCase" {
 	}
 	
 	function testBaseFunctions(){
+		
 		var urlname = "http://dev.local/railo_acf_cfc/test_samples/testpage.html"; 
 		var httpItem = new CF.http(url:urlname);
+		
 		Assert(httpItem.getUrl() EQ urlname);
-		var supportAttributes = httpItem.getSupportedTagAttributes(httpItem.getTagName());
-		
 
-		Assert(StructCount(supportAttributes) IS 26);
+		var supportAttributes = httpItem.getSupportedTagAttributes(httpItem.getTagName()).attributes;		
+		var attributesToInvoke = httpItem.getAttributes();
 		
-		var attributesToInvoke = httpItem.getTagAttributes();
 		Assert(isStruct(attributesToInvoke));
 		Assert(StructKeyExists(attributesToInvoke,"url"));
-		Assert(StructKeyExists(attributesToInvoke,"method"));
 		
 	}
 	
 	function testSimpleSend(){
-		var urlname = "http://dev.local/railo_acf_cfc/test_samples/testpage.html"; 
+		var urlname = "http://localhost/ServiceApi/test_samples/testpage.html"; 
 		var httpItem = new CF.http(url:urlname);
 		var results = httpItem.send();
 		Assert(isObject(results));

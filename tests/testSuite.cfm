@@ -1,8 +1,9 @@
 ﻿<cfparam name="URL.output" default="extjs">
 <cfscript>	
 testSuite = createObject("component","mxunit.framework.TestSuite").TestSuite();
-testSuite.addAll("RailoServiceApi.tests.TestQuery");
-testSuite.addAll("RailoServiceApi.tests.TestMail");
+testSuite.addAll("ServiceApi.tests.TestQuery");
+testSuite.addAll("ServiceApi.tests.TestHttp");
+testSuite.addAll("ServiceApi.tests.TestMail");
 results = testSuite.run();
 </cfscript>
 <cfoutput>#results.getResultsOutput(URL.output)#</cfoutput>  

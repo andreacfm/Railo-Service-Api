@@ -156,17 +156,18 @@
 			
 			<!--- cfhttp --->
 			<cfcase value="http">
-				<cfhttp attributeCollection="#tagAttributes#" result="resultVar">
+				
+				<cfhttp attributeCollection="#tagAttributes#" result="tagResult" name="res">
 					<cfloop array="#tagParams#" index="param">
 						<cfhttpParam attributeCollection="#param#">
 					</cfloop>
 				</cfhttp>
+				
 				<cfif structkeyexists(tagAttributes,"name") and tagAttributes["name"] neq "">
 	                  <cfset result.setResult(StructFind(variables,tagAttributes["name"]))>
-				<cfelse>
-					<cfset result.setResult(resultVar)>
 				</cfif>
-				<cfset result.setPrefix(resultVar)>
+				<cfset result.setPrefix(tagResult)>
+				
 			</cfcase>
 			
 			<!--- cfmail --->
@@ -215,7 +216,7 @@
 			var attrName = Right(methodname, Len(methodname)-3);
 			var methodType = Left(methodname, 3);
 			var tagname = getTagName();
-			var supportedTagAttributes = getSupportedTagAttributes();
+			var supportedTagAttributes = getSupportedTagAttributes().attributes;
 			var tagAttributes = getAttributes();
 			
 			var lAllowedExtra = "";
@@ -228,7 +229,7 @@
 				break;
 			
 			}
-			
+
 			if(methodType EQ "get" && (StructKeyExists(supportedTagAttributes, attrName) || ListFindNoCase(lAllowedExtra, attrName))){
 				if(StructKeyExists(tagAttributes, attrName)){
 					return tagAttributes[attrName];
