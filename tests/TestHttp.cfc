@@ -30,13 +30,13 @@ component extends="mxunit.framework.TestCase" {
 		var httpItem = new CF.http(url:urlname);
 		var results = httpItem.send();
 		Assert(isObject(results));
-		var httpResult = results.getResult();
+		var httpResult = results.getPrefix();
 		Assert(StructKeyExists(httpResult, "statuscode"));
 		
 	}
 	
 	function testNamedQuery(){
-		var urlname = "http://dev.local/railo_acf_cfc/test_samples/query.csv"; 
+		var urlname = "http://localhost/ServiceApi/test_samples/query.csv"; 
 		var httpItem = new CF.http(url:urlname, name:"colItems");
 		var results = httpItem.send();
 		var result = results.getPrefix();
@@ -45,16 +45,16 @@ component extends="mxunit.framework.TestCase" {
 	}
 	
 	function testSimplePost(){
-		var urlname = "http://dev.local/railo_acf_cfc/test_samples/posttest.cfm"; 
+		var urlname = "http://localhost/ServiceApi/test_samples/posttest.cfm"; 
 		var httpItem = new CF.http(url:urlname, method:"POST");
 		var results = httpItem.send();
 		Assert(httpItem.getMethod() EQ "Post");
-		Assert(results.getResult().status_code EQ 200);
-		Assert(FindNoCase("requestmethod:POST", results.getResult().filecontent));
+		Assert(results.getPrefix().status_code EQ 200);
+		Assert(FindNoCase("requestmethod:POST", results.getPrefix().filecontent));
 	}
 	
 	function testPostWithParam(){
-		var urlname = "http://dev.local/railo_acf_cfc/test_samples/posttest.cfm"; 
+		var urlname = "http://localhost/ServiceApi/test_samples/posttest.cfm"; 
 		var httpItem = new CF.http(url:urlname, method:"POST");
 			httpItem.addParam(name:"username", value:"elvis", type:"formfield")
 					.addParam(name:"password", value:"myPass", type:"formfield");	
@@ -62,9 +62,9 @@ component extends="mxunit.framework.TestCase" {
 		var results = httpItem.send();
 		
 		Assert(httpItem.getMethod() EQ "Post");
-		Assert(results.getResult().status_code EQ 200);
-		Assert(FindNoCase("form_username=elvis", results.getResult().filecontent));
-		Assert(FindNoCase("form_password=myPass", results.getResult().filecontent));
+		Assert(results.getPrefix().status_code EQ 200);
+		Assert(FindNoCase("form_username=elvis", results.getPrefix().filecontent));
+		Assert(FindNoCase("form_password=myPass", results.getPrefix().filecontent));
 	}
 	
 	/* Removed as not required

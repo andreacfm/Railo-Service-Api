@@ -157,14 +157,14 @@
 			<!--- cfhttp --->
 			<cfcase value="http">
 				
-				<cfhttp attributeCollection="#tagAttributes#" result="tagResult" name="res">
+				<cfhttp attributeCollection="#tagAttributes#" result="tagResult">
 					<cfloop array="#tagParams#" index="param">
 						<cfhttpParam attributeCollection="#param#">
 					</cfloop>
 				</cfhttp>
 				
 				<cfif structkeyexists(tagAttributes,"name") and tagAttributes["name"] neq "">
-	                  <cfset result.setResult(StructFind(variables,tagAttributes["name"]))>
+	                  <cfset result.setResult(StructFind(local,tagAttributes["name"]))>
 				</cfif>
 				<cfset result.setPrefix(tagResult)>
 				
