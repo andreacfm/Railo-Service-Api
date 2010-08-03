@@ -1,99 +1,99 @@
-component extends="base"{
+component extends="Base" accessors="true"{
 		
 	variables.tagname = "ftp";
 					
-	public any function open(){
-		setAction('open');
+	public Result function open(){
+		this.setAction('open');
 		return super.invokeTag();
 	}
 
-	public any function close(){
-		setAction('close');
+	public Result function close(){
+		this.setAction('close');
 		return super.invokeTag();
 	}
 
-	public any function quote(){
-		setAction('quote');
+	public Result function quote(){
+		this.setAction('quote');
 		return super.invokeTag();
 	}
 
-	public any function site(){
-		setAction('site');
+	public Result function site(){
+		this.setAction('site');
 		return super.invokeTag();
 	}
 
-	public any function allo(){
-		setAction('allo');
+	public Result function allo(){
+		this.setAction('allo');
 		return super.invokeTag();
 	}
 		
-	public any function acct(){
-		setAction('acct');
+	public Result function acct(){
+		this.setAction('acct');
 		return super.invokeTag();
 	}
 
-	public any function changeDir(){
-		setAction('changeDir');
+	public Result function changeDir(){
+		this.setAction('changeDir');
 		return super.invokeTag();
 	}
 	
-	public any function createDir(){
-		setAction('createDir');
+	public Result function createDir(){
+		this.setAction('createDir');
 		return super.invokeTag();
 	}
 
-	public any function listDir(){
-		setAction('listDir');
+	public Result function listDir(){
+		this.setAction('listDir');
 		return super.invokeTag();
 	}
 
-	public any function removeDir(){
-		setAction('removeDir');
+	public Result function removeDir(){
+		this.setAction('removeDir');
 		return super.invokeTag();
 	}
 	
-	public any function getFile(){
-		setAction('getFile');
+	public Result function getFile(){
+		this.setAction('getFile');
 		return super.invokeTag();
 	}
 
-	public any function putFile(){
-		setAction('putFile');
+	public Result function putFile(){
+		this.setAction('putFile');
 		return super.invokeTag();
 	}
 
-	public any function rename(){
-		setAction('rename');
+	public Result function rename(){
+		this.setAction('rename');
 		return super.invokeTag();
 	}
 
-	public any function remove(){
-		setAction('remove');
+	public Result function remove(){
+		this.setAction('remove');
 		return super.invokeTag();
 	}
 
-	public any function getCurrentDir(){
-		setAction('getCurrentDir');
+	public Result function getCurrentDir(){
+		this.setAction('getCurrentDir');
 		return super.invokeTag();
 	}
 
-	public any function getCurrentUrl(){
-		setAction('getCurrentUrl');
+	public Result function getCurrentUrl(){
+		this.setAction('getCurrentUrl');
 		return super.invokeTag();
 	}
 
-	public any function existDir(){
-		setAction('existDir');
+	public Result function existsDir(){
+		this.setAction('existsDir');
 		return super.invokeTag();
 	}
 	
-	public any function existsFile(){
-		setAction('existsFile');
+	public Result function existsFile(){
+		this.setAction('existsFile');
 		return super.invokeTag();
 	}
 
-	public any function existsFile(){
-		setAction('existsFile');
+	public Result function existsFile(){
+		this.setAction('existsFile');
 		return super.invokeTag();
 	}
 	

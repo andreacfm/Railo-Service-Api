@@ -153,6 +153,29 @@
 				
 				<cfreturn result>
 			</cfcase>
+
+			<!--- cfftp --->
+			<cfcase value="ftp">
+				
+				<!--- 
+				If action = "listdir" we need to provide a name to the cfftp tag where will
+				be stored the returned query. The recordset will be passed then to the Result
+				Object.
+				 --->
+				<cfif structkeyExists(tagAttributes,'action') and tagAttributes.action eq 'listdir'>
+					<cfset tagAttributes.name = 'q' >
+					<cfset var q = "">
+				</cfif>
+				
+				<cfftp attributeCollection="#tagAttributes#" result="tagResult"/>
+				
+				<cfif tagAttributes["action"] eq "listdir">
+	                  <cfset result.setResult(q)>
+				</cfif>
+								
+				<cfset result.setPrefix(tagResult)>
+				
+			</cfcase>
 			
 			<!--- cfhttp --->
 			<cfcase value="http">
@@ -240,7 +263,7 @@
 			}
 	
 			
-			if(methodType EQ "set" && (StructKeyExists(getSupportedTagAttributes(), attrName) || ListFindNoCase(lAllowedExtra, attrName))){
+			if(methodType EQ "set" && (StructKeyExists(supportedTagAttributes, attrName) || ListFindNoCase(lAllowedExtra, attrName))){
 				variables.attributes[attrName] = methodArguments[1];
 				return this;
 			}

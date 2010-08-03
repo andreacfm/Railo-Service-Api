@@ -1,6 +1,7 @@
 ﻿<cfparam name="URL.output" default="extjs">
 <cfscript>	
 testSuite = createObject("component","mxunit.framework.TestSuite").TestSuite();
+testSuite.addAll("ServiceApi.tests.TestFtp");
 testSuite.addAll("ServiceApi.tests.TestQuery");
 testSuite.addAll("ServiceApi.tests.TestHttp");
 //testSuite.addAll("ServiceApi.tests.TestMail");
