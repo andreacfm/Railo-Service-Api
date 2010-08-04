@@ -57,7 +57,7 @@
 	 --->
 	<cffunction name="addPart" returntype="Base" output="false" access="public">
 		<cfscript>
-		ArrayAppend(variables.parts,arguments.params);
+		ArrayAppend(variables.parts,arguments);
 		return this;		
 		</cfscript>
 	</cffunction>	
@@ -247,9 +247,10 @@
 			switch(tagName){
 				case "mail":
 					lAllowedExtra = "body";
+					break;
 				case "query":
 					lAllowedExtra = "sql";	
-				break;
+					break;
 			
 			}
 
@@ -261,7 +262,6 @@
 					return "";
 				}
 			}
-	
 			
 			if(methodType EQ "set" && (StructKeyExists(supportedTagAttributes, attrName) || ListFindNoCase(lAllowedExtra, attrName))){
 				variables.attributes[attrName] = methodArguments[1];

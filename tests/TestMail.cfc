@@ -1,11 +1,13 @@
 component extends="mxunit.framework.TestCase" {
 	
+	include "configs.cfm";
+	
 	function setUp(){
 		deleteEmails();
 	}
 	
 	function tearDown(){
-	//deleteEmails();
+		deleteEmails();
 	}
 	
 	function testSimpleCreation(){
@@ -15,11 +17,20 @@ component extends="mxunit.framework.TestCase" {
 	
 	function testConstructorSendEmail(){
 	
-		var param = {from:"mark.drew@gmail.com",to:"mark.drew@gmail.com",subject:"TestEmail1", body:"Hello World", server = "mail.test.com"};
+		var param = {
+			from:"mark.drew@gmail.com",
+			to:"mark.drew@gmail.com",
+			subject:"TestEmail1", 
+			body:"Hello World", 
+			server = "localhost",
+			port="10025"
+		};
+		
 		var mailService = new CF.mail(argumentCollection=param);
 			mailService.send();
 			
 		var file = getSentEmail();
+
 		Assert(FindNoCase("To: mark.drew@gmail.com", file));
 		Assert(FindNoCase("From: mark.drew@gmail.com", file));
 		Assert(FindNoCase("Subject: TestEmail1", file));
@@ -30,6 +41,8 @@ component extends="mxunit.framework.TestCase" {
 	function testAttributeSendEmail(){
 	
 		var mailService = new CF.mail();
+			mailService.setServer('localhost');
+			mailService.setPort(10025);
 			mailService.setFrom("mark.drew@gmail.com");
 			mailService.setTo("mark.drew@gmail.com");
 			mailService.setSubject("TestEmail2");
@@ -46,7 +59,9 @@ component extends="mxunit.framework.TestCase" {
 	}	
 	
 	function testHTMLSendEmail(){
-	var mailService = new CF.mail();
+		var mailService = new CF.mail();
+			mailService.setServer('localhost');
+			mailService.setPort(10025);
 			mailService.setFrom("mark.drew@gmail.com");
 			mailService.setTo("mark.drew@gmail.com");
 			mailService.setSubject("TestEmail2");
@@ -54,7 +69,7 @@ component extends="mxunit.framework.TestCase" {
 			mailService.setType("HTML");
 			mailService.send();
 			
-			var file = getSentEmail();
+		var file = getSentEmail();
 		Assert(FindNoCase("To: mark.drew@gmail.com", file), "TO not found");
 		Assert(FindNoCase("From: mark.drew@gmail.com", file), "FROM not found");
 		Assert(FindNoCase("Subject: TestEmail2", file), "SUBJECT not found");
@@ -65,13 +80,14 @@ component extends="mxunit.framework.TestCase" {
 	
 	function testSendAttachment(){
 		var mailService = new CF.mail();
-		
+			mailService.setServer('localhost');
+			mailService.setPort(10025);
 			mailService.setFrom("mark.drew@gmail.com");
 			mailService.setTo("mark.drew@gmail.com");
 			mailService.setSubject("TestEmail2");
 			mailService.setBody("Hello Test2");
 			mailService.setType("HTML");
-			mailService.addParam(file=expandpath("/railo_acf_cfc/test_samples/query.csv"),type="text/plain",remove=false)
+			mailService.addParam(file=expandpath("/ServiceAPI/test_samples/query.csv"),type="text/plain",remove=false)
 						.addParam(name="testHeader", value="testHeaderValue"); 
 	
 			mailService.addPart(charset:"utf-8",type:"text", body:"This is the main body text part")
@@ -89,14 +105,15 @@ component extends="mxunit.framework.TestCase" {
 	
 	function testAttributesPartsParams(){
 	
-			var mailService = new CF.mail();
-		
+		var mailService = new CF.mail();
+			mailService.setServer('localhost');
+			mailService.setPort(10025);
 			mailService.setFrom("mark.drew@gmail.com");
 			mailService.setTo("mark.drew@gmail.com");
 			mailService.setSubject("TestEmail2");
 			mailService.setBody("Hello Test2");
 			mailService.setType("HTML");
-			mailService.addParam(file=expandpath("/railo_acf_cfc/test_samples/query.csv"),type="text/plain",remove=false)
+			mailService.addParam(file=expandpath("/ServiceAPI/test_samples/query.csv"),type="text/plain",remove=false)
 						.addParam(name="testHeader", value="testHeaderValue"); 
 	
 			mailService.addPart(charset:"utf-8",type:"text", body:"This is the main body text part")
@@ -141,7 +158,7 @@ component extends="mxunit.framework.TestCase" {
 	
 	private any function getSentEmail(){
 		sleep(500);
-		var files = DirectoryList(expandPath("/railo_acf_cfc/tests/outmail"));
+		var files = DirectoryList(fakemail_outmail);
 		//We should only have one file
 		Assert(ArrayLen(files) IS 1);
 		//Get the first file
@@ -149,9 +166,9 @@ component extends="mxunit.framework.TestCase" {
 	}
 	
 	private void function deleteEmails(){
-		var files = DirectoryList(expandPath("/railo_acf_cfc/tests/outmail"));
+		var files = DirectoryList(fakemail_outmail);
 		for(file in Files){
-			FileDelete(Files[file])
+			FileDelete(file)
 		}
 	}
 	
