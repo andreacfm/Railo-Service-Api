@@ -76,11 +76,8 @@
 	addAttributes
 	 --->
 	<cffunction name="addAttributes" returntype="Base" output="false" access="public">
-		<cfargument name="attributes" type="struct" required="true">
 		<cfscript>
-		if(structCount(arguments.attributes)){
-			StructAppend(variables.attributes, arguments, true);
-		}
+		StructAppend(variables.attributes, arguments, true);
 		return this;		
 		</cfscript>
 	</cffunction>
@@ -219,7 +216,36 @@
 			
 				<cfreturn this/>
 			</cfcase>
-		
+
+			<!--- feed --->
+			<cfcase value="feed">
+				
+				<cfset var name = "">
+				<cfset var query = "">
+				<cfset var xmlvar = "">				
+				<cfset var properties = "">
+				
+				<cfdump var="#tagAttributes#">
+								
+				<cffeed attributeCollection="#tagAttributes#">	
+				
+				<cfdump var="#feedquery#">
+				<cfabort>
+
+				
+				<!--- add to instance scope --->
+				<cfset variables.properties = properties >
+				
+				<cfset resultTag = {
+					name = name,
+					query = query,
+					properties = properties,
+					xmlvar = xmlvar					
+				}>
+				
+				<cfreturn resultTag>
+				
+			</cfcase>		
 		
 		</cfswitch>
 		
