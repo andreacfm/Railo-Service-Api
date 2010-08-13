@@ -220,18 +220,13 @@
 			<!--- feed --->
 			<cfcase value="feed">
 				
-				<cfset var name = "">
-				<cfset var query = "">
-				<cfset var xmlvar = "">				
-				<cfset var properties = "">
-				
-				<cfdump var="#tagAttributes#">
+				<!--- compatibility with ACF --->
+				<cfset tagAttributes.query = 'query'>
+				<cfset tagAttributes.name = 'name'>
+				<cfset tagAttributes.properties = 'properties'>
+				<cfset tagAttributes.xmlvar = 'xmlvar'>								
 								
 				<cffeed attributeCollection="#tagAttributes#">	
-				
-				<cfdump var="#feedquery#">
-				<cfabort>
-
 				
 				<!--- add to instance scope --->
 				<cfset variables.properties = properties >
