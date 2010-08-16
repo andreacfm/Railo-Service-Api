@@ -220,26 +220,41 @@
 			<!--- feed --->
 			<cfcase value="feed">
 				
-				<!--- compatibility with ACF --->
-				<cfset tagAttributes.query = 'query'>
-				<cfset tagAttributes.name = 'name'>
-				<cfset tagAttributes.properties = 'properties'>
-				<cfset tagAttributes.xmlvar = 'xmlvar'>								
+				<!--- 
+				fields are optional in read mode
+				 --->
+				<cfif tagAttributes.action eq 'read'>
+					<cfset tagAttributes.query = 'query'>
+					<cfset tagAttributes.name = 'name'>
+					<cfset tagAttributes.properties = 'properties'>
+				</cfif>
+				
+				<!--- the xmlvar is forced for both actions --->
+				<cfset tagAttributes.xmlvar = 'xmlvar'>																		
 								
 				<cffeed attributeCollection="#tagAttributes#">	
 				
-				<!--- add to instance scope --->
-				<cfset variables.properties = properties >
+				<cfswitch expression="#tagAttributes.action#">
+					
+					<cfcase value="read">
+						
+						<cfset result = {
+							name = name,
+							query = query,
+							properties = properties,
+							xmlvar = xmlvar					
+						}>			
+							
+					</cfcase>
 				
-				<cfset resultTag = {
-					name = name,
-					query = query,
-					properties = properties,
-					xmlvar = xmlvar					
-				}>
-				
-				<cfreturn resultTag>
-				
+					<cfcase value="create">
+						
+						<cfset result = xmlvar>
+						
+					</cfcase>
+					
+				</cfswitch>
+
 			</cfcase>		
 		
 		</cfswitch>
