@@ -155,14 +155,13 @@ component extends="mxunit.framework.TestCase"{
 		var q = getObject('query',{datasource=variables.dsn});
 		var sql = "Select * from team";
 		q.setSql(sql);
-		var result = q.getResult();
+		var result = q.execute().getResult();
 		
-		q.clear();
-
-		var sql = "Select * from resultSet where firstname = 'gert'";
+		q = getObject('query',{datasource=variables.dsn, dbtype="query"});
+		sql = "Select * from resultSet where firstname = 'gert'";
 		q.setSql(sql);
 		q.setAttributes(resultSet=result);
-		var result = q.getResult();		
+		result = q.execute().getResult();		
 
 		assertTrue(result.recordcount eq 1);
 			

@@ -24,7 +24,7 @@
 	 --->
 	<cffunction name="init" returntype="Base" access="public" output="false">
 		<cfscript>
-		setAttributes(arguments);
+		setAttributes(argumentCollection=arguments);
 		return this;		
 		</cfscript>		
 	</cffunction>
@@ -123,6 +123,9 @@
 		<cfset var resultVar = "">
 		<cfset var result = new Result()>
 		<cfset var tagResult = "">
+
+		<!--- makes the attributes available in local scope. Es : query of queries --->		
+		<cfset structAppend(local,tagAttributes,true)>
 		
 		<cfswitch expression="#tagname#">
 			
