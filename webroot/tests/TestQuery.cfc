@@ -1,3 +1,4 @@
+<cfscript>
 component extends="mxunit.framework.TestCase"{
 	
 	include "configs.cfm";
@@ -148,6 +149,25 @@ component extends="mxunit.framework.TestCase"{
 		assertTrue(result.lastname eq 'rafferty');
 		
 	}
+	
+	public void function testQoQ(){
+		
+		var q = getObject('query',{datasource=variables.dsn});
+		var sql = "Select * from team";
+		q.setSql(sql);
+		var result = q.getResult();
+		
+		q.clear();
+
+		var sql = "Select * from resultSet where firstname = 'gert'";
+		q.setSql(sql);
+		q.setAttributes(resultSet=result);
+		var result = q.getResult();		
+
+		assertTrue(result.recordcount eq 1);
+			
+	}
 
 
 }
+</cfscript>

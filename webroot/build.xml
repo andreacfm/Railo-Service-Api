@@ -1,12 +1,12 @@
 <project name="RailoServiceAPI">
 	
-	<property name="railoFork" value="/Users/andrea/dev/railo/railo-java/railo-core/src/resource/component/org"/>
+	<property name="railoFork" value="/Users/andrea/dev/railo/railo-java/railo-core/src/resource/component"/>
 	
 	<mkdir dir="${railoFork}"/>
 	
 	<target name="Deploy_To_Railo_Fork">
 		<copy todir="${railoFork}">
-			<fileset dir="${basedir}/org" />
+			<fileset dir="${basedir}/src" />
 		</copy>
 	</target>
 

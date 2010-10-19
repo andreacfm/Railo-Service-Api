@@ -73,9 +73,9 @@
 	</cffunction>	
 
 	<!--- 
-	addAttributes
+	setAttributes
 	 --->
-	<cffunction name="addAttributes" returntype="Base" output="false" access="public">
+	<cffunction name="setAttributes" returntype="Base" output="false" access="public">
 		<cfscript>
 		StructAppend(variables.attributes, arguments, true);
 		return this;		
