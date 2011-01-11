@@ -10,23 +10,43 @@
 
 <cfquery name="q" datasource="#dsn#">
 drop table if exists team;
-	
-create table team(
-	id int auto_increment primary key, 
-	firstname varchar(255),
-	lastname varchar(255),
-	dom varchar(10)
-);	
 
-insert into team(firstname,lastname,dom) values ('gert','frantz','com');
-insert into team(firstname,lastname,dom) values ('micheal','offner','com');
-insert into team(firstname,lastname,dom) values ('sean','corfield','com');
-insert into team(firstname,lastname,dom) values ('peter','bell','com');
-insert into team(firstname,lastname,dom) values ('mark','drew','com');
-insert into team(firstname,lastname,dom) values ('todd','rafferty','org');
-insert into team(firstname,lastname,dom) values ('jordan','micheals','org');
-insert into team(firstname,lastname,dom) values ('aj','mercier','org');
-insert into team(firstname,lastname,dom) values ('andrea','campolonghi','org');
+CREATE TABLE team  (
+    id       	int(11) AUTO_INCREMENT NOT NULL,
+    firstname	varchar(255) NULL,
+    lastname 	varchar(255) NULL,
+    dom      	varchar(10) NULL,
+    PRIMARY KEY(id)
+)
+ENGINE = MyISAM
+AUTO_INCREMENT = 1;
+
+INSERT INTO `service_api`.`team`(`firstname`, `lastname`, `dom`)
+VALUES('gert', 'frantz', 'com');
+
+INSERT INTO `service_api`.`team`(`firstname`, `lastname`, `dom`)
+VALUES('micheal', 'offner', 'com');
+
+INSERT INTO `service_api`.`team`(`firstname`, `lastname`, `dom`)
+VALUES('sean', 'corfield', 'com');
+
+INSERT INTO `service_api`.`team`(`firstname`, `lastname`, `dom`)
+VALUES('peter', 'bell', 'com');
+
+INSERT INTO `service_api`.`team`(`firstname`, `lastname`, `dom`)
+VALUES('mark', 'drew', 'com');
+
+INSERT INTO `service_api`.`team`(`firstname`, `lastname`, `dom`)
+VALUES('todd', 'rafferty', 'org');
+
+INSERT INTO `service_api`.`team`(`firstname`, `lastname`, `dom`)
+VALUES('jordan', 'micheals', 'org');
+
+INSERT INTO `service_api`.`team`(`firstname`, `lastname`, `dom`)
+VALUES('aj', 'mercier', 'org');
+
+INSERT INTO `service_api`.`team`(`firstname`, `lastname`, `dom`)
+VALUES('andrea', 'campolonghi', 'org');
 </cfquery>
 
 <cfoutput><p>* Done!</p></cfoutput>

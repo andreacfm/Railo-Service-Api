@@ -57,7 +57,7 @@ component output="false" extends="Base" accessors="true"{
 		while(cursor neq 0){
 			
 			match = refindNoCase(':[a-z]*|\?',sql,cursor,true);
-			
+
 			if(match.pos[1] gt 0){
 				// string from cursor to match			
 				str = mid(sql,cursor,match.pos[1] - cursor);
@@ -71,11 +71,22 @@ component output="false" extends="Base" accessors="true"{
 					result.add(positionalParams[positionalCursor]);
 					positionalCursor ++;				
 				}
+
+				//trace the lastmatch position to add any string after the last match if found
+				var lastmatch =  match.pos[1] + match.len[1];
+
 			}						
 			// point the cursor after the match
-			cursor = match.pos[1] + match.len[1];	
-		}		
-		
+			cursor = match.pos[1] + match.len[1];
+
+			// no more match check if we have string to close the statement
+			if(cursor eq 0 and len(trim(sql)) gt lastmatch){
+				str = mid(sql,lastmatch,len(trim(sql)));
+				result.add({type='String',value=str})
+			}
+
+		}
+
 		return result;	
 	}
 	

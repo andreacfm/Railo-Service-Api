@@ -167,6 +167,32 @@ component extends="mxunit.framework.TestCase"{
 			
 	}
 
+	public void function test_insert_with_named_parameters(){
+
+        transaction action="begin"{
+
+            try{
+                var q = getObject('query',{datasource=variables.dsn});
+                var sql = "INSERT INTO team (firstname, lastname) VALUES( :firstname , :lastname )";
+                q.setSql(sql);
+                q.addParam(name="firstname", value="name_1", cfsqltype="cf_sql_varchar");
+                q.addParam(name="lastname", value="lastname_1", cfsqltype="cf_sql_varchar");
+
+                result = q.execute().getResult();
+                debug(result);
+
+            }catch(Any e){
+                transaction action="rollback";
+                rethrow;
+            }
+
+            transaction action="rollback";
+
+        }
+
+
+	}
+
 
 }
 </cfscript>

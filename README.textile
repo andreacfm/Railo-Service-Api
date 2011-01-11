@@ -6,8 +6,8 @@ h4. SET UP ( needed for runnign the tests )
 
 h4. QUERY TESTS
 
- * Create a dsn called 'railoserviceapi' for a H2 database named 'test' ( a working copy is under /test_samples/db )
- * /setup/index.cfm run some queries that populate the db.
+ * Create a dsn called 'railoserviceapi'.
+ * /setup/index.cfm run some queries that populate the db ( sql is for mysql )
 
 h4. FTP TESTS
 

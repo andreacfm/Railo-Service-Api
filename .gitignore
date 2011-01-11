@@ -14,10 +14,15 @@ stop
 LICENSES/
 webroot/WEB-INF/
 webroot/mxunit
+.idea
+/logs/
+/resources/
 
 #extensions
 *.project
 *.class
 *.DS_Store
 *.classpath
+*.iml
+*.ini
 /.settings
