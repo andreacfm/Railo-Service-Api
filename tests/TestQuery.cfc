@@ -1,4 +1,3 @@
-<cfscript>
 component extends="mxunit.framework.TestCase"{
 	
 	include "configs.cfm";
@@ -193,6 +192,44 @@ component extends="mxunit.framework.TestCase"{
 
 	}
 
+	public void function test_insert_with_with_multiline_query(){
+
+        transaction action="begin"{
+
+            try{
+                var q = getObject('query',{datasource=variables.dsn});
+
+                q.setSql('
+                    INSERT INTO team(
+                        firstname,
+                        lastname
+                    ) VALUES(
+                        :firstname,
+                        :lastname
+                    )');
+
+                q.addParam(name = 'firstname', value = 'myname', cfsqltype = 'cf_sql_varchar');
+                q.addParam(name = 'lastname', value = 'mylastname', cfsqltype = 'cf_sql_varchar');
+
+                q.execute();
+
+                var q2 = getObject('query',{datasource=variables.dsn});
+                q2.setSql("select * from team where firstname = 'myname'");
+                var res = q2.execute().getResult();
+
+                assertTrue(res.recordcount eq 1);
+                assertTrue(res.firstname eq 'myname');
+
+            }catch(Any e){
+                transaction action="rollback";
+                rethrow;
+            }
+
+            transaction action="rollback";
+
+        }
+
+	}
+
 
 }
-</cfscript>
