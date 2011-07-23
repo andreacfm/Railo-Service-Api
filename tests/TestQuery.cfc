@@ -266,6 +266,21 @@ component extends="mxunit.framework.TestCase"{
 
 	}
 
+	public void function test_sql_cotains_a_question_mark(){
+
+		var q = getObject('query',{datasource=variables.dsn});
+        q.setSql("INSERT INTO team(firstname)VALUES('test?test')");
+        q.execute();
+
+		var sql = "Select * from team where firstname = 'test?test'";
+		q.setSql(sql);
+
+		var qres = q.execute();
+		var result = qres.getResult();
+		assertEquals(1, result.recordcount);
+
+	}
+
     // RAILO 1440
 	public void function test_argument_dbtype_passed_to_execute(){
 
