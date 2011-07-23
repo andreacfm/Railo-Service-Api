@@ -266,4 +266,22 @@ component extends="mxunit.framework.TestCase"{
 
 	}
 
+    // RAILO 1440
+	public void function test_argument_dbtype_passed_to_execute(){
+
+		var q = getObject('query',{datasource=variables.dsn});
+		var sql = "Select * from team";
+		q.setSql(sql);
+		var result = q.execute().getResult();
+
+		q = getObject('query',{datasource=variables.dsn});
+		sql = "Select * from resultSet where firstname = 'gert'";
+		q.setSql(sql);
+		q.setAttributes(resultSet=result);
+		result = q.execute(dbtype="query").getResult();
+
+		assertTrue(result.recordcount eq 1);
+
+	}
+
 }
