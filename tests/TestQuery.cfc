@@ -60,14 +60,14 @@ component extends="mxunit.framework.TestCase"{
 		q.addParam(name="wrong",value="1",cfsqltype="cf_sql_numeric");
 		q.addParam(name="myid",value="1",cfsqltype="cf_sql_numeric");
 		q.addParam(value="hello",cfsqltype="cf_sql_varchar");		
-		
+
 		var sql = "Select from table where id = :myid and name = ?";
 		q.setSql(sql);
 		var result = q.parseSql();
 		assertTrue(arrayLen(result) eq 4);
 		assertTrue(trim(result[1].value) eq  'Select from table where id =');
 		assertTrue(trim(result[2].name) eq 'myid');
-		
+
 	}
 
 	public void function test_findNamedParam(){
@@ -250,5 +250,20 @@ component extends="mxunit.framework.TestCase"{
 
 	}
 
+    // RAILO 1379
+	public void function test_sql_cotains_a_colon(){
+
+		var q = getObject('query',{datasource=variables.dsn});
+        q.setSql("INSERT INTO team(firstname)VALUES('test:test')");
+        q.execute();
+
+		var sql = "Select * from team where firstname = 'test:test'";
+		q.setSql(sql);
+
+		var qres = q.execute();
+		var result = qres.getResult();
+		assertEquals(1, result.recordcount);
+
+	}
 
 }
