@@ -1,13 +1,16 @@
 component extends="mxunit.framework.TestCase"{
 	
 	include "configs.cfm";
+	include "fixture.cfm";
 	variables.dsn = "railoserviceapi";
 	
 	
 	public void function setUp(){
+	    setUpData();
 	}
 
 	public void function tearDown(){
+	    tearDownData();
 	}
 
 	public void function simple_creation_must_return_a_cfc_query_object(){
@@ -217,7 +220,7 @@ component extends="mxunit.framework.TestCase"{
                 q2.setSql("select * from team where firstname = 'myname'");
                 var res = q2.execute().getResult();
 
-                assertTrue(res.recordcount eq 1);
+                assertEquals(1,res.recordcount);
                 assertTrue(res.firstname eq 'myname');
 
             }catch(Any e){
@@ -228,6 +231,22 @@ component extends="mxunit.framework.TestCase"{
             transaction action="rollback";
 
         }
+
+	}
+
+    // RAILO 1280
+	public void function test_named_parameter_contain_a_number(){
+
+		var q = getObject('query',{datasource=variables.dsn});
+		q.addParam(name="test1",value="1",cfsqltype="cf_sql_numeric");
+		var sql = "Select * from team where test1 = :test1";
+		q.setSql(sql);
+
+		var qres = q.execute();
+
+		var result = qres.getResult();
+
+		assertEquals(0, result.recordcount);
 
 	}
 
