@@ -1,4 +1,4 @@
-<cffunction name="setUpData">
+<cffunction name="setUpData" access="private">
     <cfset dsn = 'railoserviceapi'>
 
     <cfquery name="q" datasource="#dsn#">
@@ -44,7 +44,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="tearDownData">
+<cffunction name="tearDownData" access="private">
     <cfquery name="q" datasource="#dsn#">
     drop table if exists team;
     </cfquery>

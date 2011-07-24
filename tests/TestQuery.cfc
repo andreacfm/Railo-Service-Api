@@ -67,6 +67,7 @@ component extends="mxunit.framework.TestCase"{
 		assertTrue(arrayLen(result) eq 4);
 		assertTrue(trim(result[1].value) eq  'Select from table where id =');
 		assertTrue(trim(result[2].name) eq 'myid');
+		assertTrue(trim(result[4].value) eq 'hello');
 
 	}
 
@@ -290,13 +291,31 @@ component extends="mxunit.framework.TestCase"{
 		var result = q.execute().getResult();
 
 		q = getObject('query',{datasource=variables.dsn});
-		sql = "Select * from resultSet where firstname = 'gert'";
-		q.setSql(sql);
 		q.setAttributes(resultSet=result);
-		result = q.execute(dbtype="query").getResult();
+		result = q.execute(sql="Select * from resultSet where firstname = 'gert'",dbtype="query").getResult();
 
 		assertTrue(result.recordcount eq 1);
 
 	}
+
+    // RAILO 1428
+    public void function test_drops_character_after_last_parameter_question_mark(){
+        var q = getObject('query',{datasource=variables.dsn});
+        makePublic(q,"parseSql");
+        q.addParam(value="name_1", cfsqltype="cf_sql_varchar");
+        q.addParam(value="lastname_1", cfsqltype="cf_sql_varchar");
+        q.setSql("INSERT INTO team(firstname,lastname)VALUES( ?, ?)");
+
+        q.execute();
+        q.clearParams();
+
+        var sql = "Select * from team where firstname = 'name_1'";
+        q.setSql(sql);
+
+        var qres = q.execute();
+        var result = qres.getResult();
+        assertEquals(1, result.recordcount);
+
+    }
 
 }
