@@ -1,0 +1,13 @@
+#TODO implement a list of SQL statements that matches to create a better testing for the parse sql method.
+
+:param
+(:param)
+( :param )
+:param,:param
+(:param,:param)
+( :param , :param )
+?
+(?)
+( ? , ? )
+
+
