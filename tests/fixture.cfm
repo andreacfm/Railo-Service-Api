@@ -8,6 +8,7 @@
         id       	int(11) AUTO_INCREMENT NOT NULL,
         firstname	varchar(255) NULL,
         lastname 	varchar(255) NULL,
+        full_name   varchar(255) NULL,
         dom      	varchar(10) NULL,
         test1       int(11) NULL,
         PRIMARY KEY(id)

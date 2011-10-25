@@ -318,4 +318,21 @@ component extends="mxunit.framework.TestCase"{
 
     }
 
+    //RAILO-1557
+    public void function test_param_name_with_underscore(){
+        var q = getObject('query',{datasource=variables.dsn});
+        q.addParam(value="my fullname", name="full_name", cfsqltype="cf_sql_varchar");
+        q.setSql("INSERT INTO team(full_name)VALUES(:full_name )");
+        q.execute();
+
+        q.clearParams();
+
+        var sql = "Select * from team where full_name = 'my fullname'";
+        q.setSql(sql);
+        var result = q.execute().getResult();
+        assertEquals(1, result.recordcount);
+
+    }
+
+
 }
