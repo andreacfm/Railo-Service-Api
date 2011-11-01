@@ -335,4 +335,76 @@ component extends="mxunit.framework.TestCase"{
     }
 
 
+
+    public void function test_sql_contains_colon_and_dquote(){
+        var q = getObject('query',{datasource=variables.dsn});
+        q.addParam(value="my lastname", name="param", cfsqltype="cf_sql_varchar");
+        q.addParam(value="my fullname", cfsqltype="cf_sql_varchar");
+        q.setSql("INSERT INTO team(firstname,lastname,full_name)VALUES( 'this""or:that' , :param , ? )");
+        q.execute();
+
+        q.clearParams();
+
+        var sql = "Select * from team where firstname = 'this""or:that'";
+        q.setSql(sql);
+        var result = q.execute().getResult();
+        assertEquals(1, result.recordcount);
+
+    }
+
+
+    public void function test_sql_contains_colon_and_escaped_dquote(){
+        var q = getObject('query',{datasource=variables.dsn});
+        q.addParam(value="my lastname", name="param", cfsqltype="cf_sql_varchar");
+        q.addParam(value="my fullname", cfsqltype="cf_sql_varchar");
+        q.setSql("INSERT INTO team(firstname,lastname,full_name)VALUES( ""this\""or:that"" , :param , ? )");
+        q.execute();
+
+        q.clearParams();
+
+        var sql = "Select * from team where firstname = 'this""or:that'";
+        q.setSql(sql);
+        var result = q.execute().getResult();
+        assertEquals(1, result.recordcount);
+
+    }
+
+
+    public void function test_sql_contains_qmark_and_squote(){
+        var q = getObject('query',{datasource=variables.dsn});
+        q.addParam(value="my lastname", name="param", cfsqltype="cf_sql_varchar");
+        q.addParam(value="my fullname", cfsqltype="cf_sql_varchar");
+        q.setSql("INSERT INTO team(firstname,lastname,full_name)VALUES( ""this'or?that"" , :param , ? )");
+        q.execute();
+
+        q.clearParams();
+
+        var sql = "Select * from team where firstname = 'this\'or?that'";
+        q.setSql(sql);
+        var result = q.execute().getResult();
+        assertEquals(1, result.recordcount);
+
+    }
+
+
+    public void function test_sql_contains_qmark_and_escaped_dquote(){
+        var q = getObject('query',{datasource=variables.dsn});
+        q.addParam(value="my lastname", name="param", cfsqltype="cf_sql_varchar");
+        q.addParam(value="my fullname", cfsqltype="cf_sql_varchar");
+        q.setSql("INSERT INTO team(firstname,lastname,full_name)VALUES( 'this\'or?that' , :param , ? )");
+        q.execute();
+
+        q.clearParams();
+
+        var sql = 'Select * from team where firstname = "this''or?that"';
+        q.setSql(sql);
+        var result = q.execute().getResult();
+        assertEquals(1, result.recordcount);
+
+    }
+    
+
+
+
+
 }
