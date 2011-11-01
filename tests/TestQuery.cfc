@@ -252,7 +252,7 @@ component extends="mxunit.framework.TestCase"{
 	}
 
     // RAILO 1379
-	public void function test_sql_cotains_a_colon(){
+	public void function test_sql_contains_a_colon(){
 
 		var q = getObject('query',{datasource=variables.dsn});
         q.setSql("INSERT INTO team(firstname)VALUES('test:test')");
@@ -267,7 +267,7 @@ component extends="mxunit.framework.TestCase"{
 
 	}
 
-	public void function test_sql_cotains_a_question_mark(){
+	public void function test_sql_contains_a_question_mark(){
 
 		var q = getObject('query',{datasource=variables.dsn});
         q.setSql("INSERT INTO team(firstname)VALUES('test?test')");
