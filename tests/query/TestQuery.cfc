@@ -1,7 +1,7 @@
 component extends="mxunit.framework.TestCase"{
 
-	include "configs.cfm";
-	include "fixture.cfm";
+	include "../configs.cfm";
+	include "../fixture.cfm";
 	variables.dsn = "railoserviceapi";
 
 

@@ -1,14 +1,30 @@
-<project name="RailoServiceAPI">
-	
-	<property name="railoFork" value="/Users/andrea/dev/railo/railo-java/railo-core/src/resource/component"/>
-	
-	<mkdir dir="${railoFork}"/>
-	
-	<target name="Deploy_To_Railo_Fork">
-		<copy todir="${railoFork}">
-			<fileset dir="${basedir}/src" />
-		</copy>
-	</target>
+<project name="RailoServiceAPI" default="runtests">
+
+    <target name="runtests" description="Make output directories and run the MXUnit task">
+        <delete dir="testresults"/>
+        <mkdir dir="testresults"/>
+        <taskdef name="mxunittask"
+                 classname="org.mxunit.ant.MXUnitAntTask"
+                 classpath="${basedir}/mxunit/ant/lib/mxunit-ant.jar"/>
+        <mxunittask server="localhost" port="8080"
+                    outputdir="testresults"
+                    defaultrunner="/railo-service-api/mxunit/runner/HttpAntRunner.cfc"
+                    verbose="true">
+            <directory path="${basedir}/tests/query"
+                       recurse="false"
+                       componentPath="tests.query"
+                       packagename="org.railo.cfml"/>
+        </mxunittask>
+
+        <mkdir dir="testresults/junithtml"/>
+        <junitreport todir="testresults/junithtml">
+            <fileset dir="testresults">
+                <include name="*.xml"/>
+            </fileset>
+            <report format="noframes" todir="testresults/junithtml" styledir="${basedir}/mxunit/ant/xsl"/>
+        </junitreport>
+
+    </target>
 
 
 </project>

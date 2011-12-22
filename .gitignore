@@ -4,6 +4,7 @@ mxunit/
 .idea
 /logs/
 /resources/
+testresults
 
 #extensions
 *.project
